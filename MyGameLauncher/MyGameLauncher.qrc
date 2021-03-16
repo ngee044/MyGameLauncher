@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/MyGameLauncher">
+        <file>resource/title_label.PNG</file>
+        <file>resource/exit.png</file>
+    </qresource>
+</RCC>
