@@ -43,14 +43,23 @@
     <ClCompile Include="LoginPage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ChatWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="LoginPage.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="ChatWidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="LoginPage.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="ChatWidget.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

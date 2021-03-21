@@ -13,6 +13,9 @@ public:
 
 	void connection();
 
+public slots:
+	void slotLogin();
+
 private:
 	Ui::LoginPage ui;
 };

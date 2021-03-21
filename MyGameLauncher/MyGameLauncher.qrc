@@ -2,5 +2,7 @@
     <qresource prefix="/MyGameLauncher">
         <file>resource/title_label.PNG</file>
         <file>resource/exit.png</file>
+        <file>resource/tob_none_btn01.png</file>
+        <file>resource/tob_none_btn02.png</file>
     </qresource>
 </RCC>
