@@ -1,0 +1,64 @@
+set [key] [value]  
+데이터 추가
+
+get [key]
+해당 key 값의 데이터 출력
+
+keys *
+모든 키 출력
+
+keys *2 
+2로 끝나는 key만 검색
+
+del [key]
+key값의 데이터 삭제
+
+rename [key] [replace key]
+key값을 replace key로 변경 (키 값만 바꿈)
+
+exists [key]
+존재 여부 검색를 출력
+
+stvlen [key]
+key의 value 길이 출력
+
+flushall
+모든 key 삭제
+
+setex [key] [sec] [value]
+일정 시간(sec)동안 데이터 저장 ttl [key]로 시간 확인 가능
+시간 지나면 데이터 삭제...
+
+mset [key] [value] [key] [value] ...
+여러 개 저장
+
+mget [key] [key] ....
+저장된 값을 다중 검색
+
+incr [key]
+해당 key값의 value를 1 증가
+
+decr [key]
+해당 key값의 value를 1 감소
+
+incrby [key] [number paramter]
+해당 key값의 value가 number parameter 값 만큼 증가
+
+decrby [key] [numberparameter]
+해당 key값의 value가 number parameter 값 만큼 감소
+
+append [key] [value]
+현재에 value에 value를 추가(데이터 이어 붙이기)
+
+save
+파일로 저장 (dump.rdb)
+
+clear 
+화면 클리어
+
+time 
+데이터 저장 시간
+
+info
+서버 설정 상태 조회
+
