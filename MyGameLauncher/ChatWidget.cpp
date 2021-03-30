@@ -8,4 +8,5 @@ ChatWidget::ChatWidget(QWidget *parent)
 
 ChatWidget::~ChatWidget()
 {
+
 }

@@ -5,6 +5,13 @@ VisualStudioVersion = 15.0.28307.1231
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MyGameLauncher", "MyGameLauncher\MyGameLauncher.vcxproj", "{DFAD05BF-3A56-42D7-80A0-10B88968545F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RedisDBIO", "RedisDBIO\RedisDBIO.vcxproj", "{7EFD71F8-BFA3-496A-B270-D1BED04743CD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common_header", "Common_header", "{22C6C7BD-A2C3-4F32-9A0F-F5AC391B58E9}"
+	ProjectSection(SolutionItems) = preProject
+		Common\singleton.h = Common\singleton.h
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -15,6 +22,10 @@ Global
 		{DFAD05BF-3A56-42D7-80A0-10B88968545F}.Debug|x64.Build.0 = Debug|x64
 		{DFAD05BF-3A56-42D7-80A0-10B88968545F}.Release|x64.ActiveCfg = Release|x64
 		{DFAD05BF-3A56-42D7-80A0-10B88968545F}.Release|x64.Build.0 = Release|x64
+		{7EFD71F8-BFA3-496A-B270-D1BED04743CD}.Debug|x64.ActiveCfg = Debug|x64
+		{7EFD71F8-BFA3-496A-B270-D1BED04743CD}.Debug|x64.Build.0 = Debug|x64
+		{7EFD71F8-BFA3-496A-B270-D1BED04743CD}.Release|x64.ActiveCfg = Release|x64
+		{7EFD71F8-BFA3-496A-B270-D1BED04743CD}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
