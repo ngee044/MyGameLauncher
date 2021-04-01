@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common_header", "Common_hea
 		Common\singleton.h = Common\singleton.h
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AWS_IO", "AWS_IO\AWS_IO.vcxproj", "{B9356265-0FE7-415D-88D2-10972599622C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -26,6 +28,10 @@ Global
 		{7EFD71F8-BFA3-496A-B270-D1BED04743CD}.Debug|x64.Build.0 = Debug|x64
 		{7EFD71F8-BFA3-496A-B270-D1BED04743CD}.Release|x64.ActiveCfg = Release|x64
 		{7EFD71F8-BFA3-496A-B270-D1BED04743CD}.Release|x64.Build.0 = Release|x64
+		{B9356265-0FE7-415D-88D2-10972599622C}.Debug|x64.ActiveCfg = Debug|x64
+		{B9356265-0FE7-415D-88D2-10972599622C}.Debug|x64.Build.0 = Debug|x64
+		{B9356265-0FE7-415D-88D2-10972599622C}.Release|x64.ActiveCfg = Release|x64
+		{B9356265-0FE7-415D-88D2-10972599622C}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
