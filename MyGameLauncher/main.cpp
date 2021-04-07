@@ -11,6 +11,7 @@ class MyCustomHttpClientFactory
 
 int main(int argc, char *argv[])
 {
+#if 0
 	Aws::SDKOptions options;
 	options.httpOptions.httpClientFactory_create_fn = []() {
 		return Aws::MakeShared<MyCustomHttpClientFactory>(
@@ -23,6 +24,7 @@ int main(int argc, char *argv[])
 	}
 	Aws::ShutdownAPI(options);
 	return 0;
+#endif
 
     QApplication a(argc, argv);
     LoginPage w;

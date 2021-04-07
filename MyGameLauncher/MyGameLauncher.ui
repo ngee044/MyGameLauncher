@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>692</width>
-    <height>602</height>
+    <width>999</width>
+    <height>717</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -136,6 +136,32 @@
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="2,6,2">
+       <property name="spacing">
+        <number>1</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QWidget" name="game_list_widget_" native="true"/>
+       </item>
+       <item>
+        <widget class="QWidget" name="main_widget_" native="true"/>
+       </item>
+       <item>
+        <widget class="QWidget" name="login_status_widget_" native="true"/>
+       </item>
+      </layout>
      </widget>
     </item>
    </layout>
