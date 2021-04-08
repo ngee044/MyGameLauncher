@@ -5,10 +5,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>qrc;rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
@@ -21,6 +17,21 @@
       <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
       <Extensions>ts</Extensions>
     </Filter>
+    <Filter Include="Source Files\View">
+      <UniqueIdentifier>{8d2fb525-7c3e-4a3b-8637-d9e9d8a64bf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View\LoginView">
+      <UniqueIdentifier>{9b22717a-91cb-46da-bd14-4f4edfc70a06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View\MainView">
+      <UniqueIdentifier>{cb98ad8a-2525-4d23-a107-20860e7b2c1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View\ChatView">
+      <UniqueIdentifier>{5b65b1a0-e540-4d02-a98b-7ed6c99562a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Module">
+      <UniqueIdentifier>{2071b255-99a7-4a10-8a33-c8598a366e8e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="MyGameLauncher.qrc">
@@ -29,33 +40,36 @@
     <QtUic Include="MyGameLauncher.ui">
       <Filter>Form Files</Filter>
     </QtUic>
-    <QtMoc Include="MyGameLauncher.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <ClCompile Include="MyGameLauncher.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MyGameLauncher.cpp">
+      <Filter>Source Files\View\MainView</Filter>
+    </ClCompile>
     <ClCompile Include="LoginPage.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\View\LoginView</Filter>
     </ClCompile>
     <ClCompile Include="ChatWidget.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\View\ChatView</Filter>
     </ClCompile>
     <ClCompile Include="AccountManager.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="MyGameLauncherController.cpp">
+      <Filter>Source Files\View\MainView</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="MyGameLauncher.h">
+      <Filter>Source Files\View\MainView</Filter>
+    </QtMoc>
     <QtMoc Include="LoginPage.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\View\LoginView</Filter>
     </QtMoc>
     <QtMoc Include="ChatWidget.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\View\ChatView</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
@@ -71,7 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AccountManager.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\Module</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

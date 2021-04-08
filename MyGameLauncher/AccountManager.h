@@ -28,8 +28,10 @@ public:
 	~AccountManager();
 
 	void createUser();
-	bool checkPassword();
-	bool checkId();
+
+	static bool checkPassword();
+	static bool checkId();
+	USER getUserInfo();
 
 private:
 	USER user_;

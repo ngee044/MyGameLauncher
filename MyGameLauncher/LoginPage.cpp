@@ -5,6 +5,7 @@
 #include <QDebug>
 
 #include "LoginPage.h"
+#include "MyGameLauncher.h"
 
 LoginPage::LoginPage(QWidget *parent)
 	: QWidget(parent)
@@ -31,5 +32,24 @@ void LoginPage::slotLogin()
 	QString id = ui.lineEdit_id->text();
 	QString pw = ui.lineEdit_pw->text();
 
+	//TODO.. connects AWS DB
+	if (id == "admin")
+	{
+		if (pw == "1234")
+		{
+			MyGameLauncher* main = new MyGameLauncher();
+			main->show();
+
+			this->hide();
+		}
+		else
+		{
+			//TODO MessageBox
+		}
+	}
+	else
+	{
+		//TODO MessageBox;
+	}
 
 }

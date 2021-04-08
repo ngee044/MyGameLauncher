@@ -10,6 +10,7 @@ AccountManager::~AccountManager()
 
 void AccountManager::createUser()
 {
+
 }
 
 bool AccountManager::checkPassword()
@@ -20,4 +21,9 @@ bool AccountManager::checkPassword()
 bool AccountManager::checkId()
 {
 	return false;
+}
+
+USER AccountManager::getUserInfo()
+{
+	return USER();
 }

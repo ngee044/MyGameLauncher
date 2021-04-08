@@ -3,6 +3,7 @@
 #include <aws/core/Aws.h>
 
 #include "LoginPage.h"
+#include "MyGameLauncher.h"
 
 class MyCustomHttpClientFactory
 {
@@ -27,7 +28,12 @@ int main(int argc, char *argv[])
 #endif
 
     QApplication a(argc, argv);
+#if 0
     LoginPage w;
     w.show();
+#else
+	MyGameLauncher launcher;
+	launcher.show();
+#endif
     return a.exec();
 }

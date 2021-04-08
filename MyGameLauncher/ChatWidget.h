@@ -16,7 +16,7 @@ class TextContents : public QWidget
 	Q_OBJECT
 public:
 	//User Info Class 추가하여 내용 추가해야함
-	TextContents(QString text, USER user) : text_(text), icon_image_(user.icon_image_) { initLayout(); }
+	TextContents(QString text, USER user) : text_(text), user_info_(user) { initLayout(); }
 	~TextContents();
 
 	void createTextLabel()
@@ -37,22 +37,29 @@ protected:
 	{
 		text_layout_ = new QVBoxLayout();
 		auto main_lay = new QHBoxLayout;
-
+		
+		QString date;
+		date.sprintf("%02:%02", QTime::currentTime().hour(), QTime::currentTime().minute());
 		user_id_and_time_ = new QLabel;
+		user_id_and_time_->setText(user_info_.nick_name_ + " " + date);
 		text_layout_->addWidget(user_id_and_time_);
 
 		user_icon_image_ = new QLabel;
-		user_icon_image_->setPixmap(icon_image_);
+		user_icon_image_->setPixmap(user_info_.icon_image_);
 
 		main_lay->addWidget(user_icon_image_, 1);
 		main_lay->addLayout(text_layout_, 1);
 	}
+	void addTextLabel()
+	{
 
+	}
 private:
 	QString text_;
 	QVBoxLayout* text_layout_ = nullptr;
 	QDate date_;
 
+	USER user_info_;
 	QLabel* user_icon_image_ = nullptr;
 	QPixmap icon_image_;
 	QLabel* user_id_and_time_ = nullptr;

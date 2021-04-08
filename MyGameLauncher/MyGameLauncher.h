@@ -1,7 +1,12 @@
 #pragma once
 
 #include <QtWidgets/QMainWindow>
+#include "AccountManager.h"
+#include "ChatWidget.h"
+
 #include "ui_MyGameLauncher.h"
+
+class TitleBar;
 
 class MyGameLauncher : public QMainWindow
 {
@@ -10,7 +15,15 @@ class MyGameLauncher : public QMainWindow
 public:
     MyGameLauncher(QWidget *parent = Q_NULLPTR);
 
+protected:
+	void connection();
+	void initLayout();
+
+	virtual void resizeEvent(QResizeEvent * event) override;
+
 private:
     Ui::MyGameLauncherClass ui;
-	void connection();
+
+	TitleBar* titlebar_ = nullptr;
+	USER user_info_;
 };
