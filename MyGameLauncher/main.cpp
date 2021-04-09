@@ -1,9 +1,9 @@
 #include <iostream>
 #include <QtWidgets/QApplication>
-#include <aws/core/Aws.h>
 
 #include "LoginPage.h"
 #include "MyGameLauncher.h"
+#include "../AWS_IO/aws_io.h"
 
 class MyCustomHttpClientFactory
 {
@@ -26,6 +26,8 @@ int main(int argc, char *argv[])
 	Aws::ShutdownAPI(options);
 	return 0;
 #endif
+	AWS_IO aws_io;
+	return 0;
 
     QApplication a(argc, argv);
 #if 0
