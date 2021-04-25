@@ -87,8 +87,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="aws_accesskey.h" />
     <ClInclude Include="aws_io_global.h" />
     <QtMoc Include="aws_io.h" />
+    <ClCompile Include="aws_accesskey.cpp" />
     <ClCompile Include="aws_io.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +105,15 @@
     <Import Project="..\packages\AWSSDKCPP-Core.1.6.25\build\native\AWSSDKCPP-Core.targets" Condition="Exists('..\packages\AWSSDKCPP-Core.1.6.25\build\native\AWSSDKCPP-Core.targets')" />
     <Import Project="..\packages\AWSSDKCPP-DynamoDB.redist.1.6.20120810.25\build\native\AWSSDKCPP-DynamoDB.redist.targets" Condition="Exists('..\packages\AWSSDKCPP-DynamoDB.redist.1.6.20120810.25\build\native\AWSSDKCPP-DynamoDB.redist.targets')" />
     <Import Project="..\packages\AWSSDKCPP-DynamoDB.1.6.20120810.25\build\native\AWSSDKCPP-DynamoDB.targets" Condition="Exists('..\packages\AWSSDKCPP-DynamoDB.1.6.20120810.25\build\native\AWSSDKCPP-DynamoDB.targets')" />
+    <Import Project="..\packages\AWSSDKCPP-IAM.redist.1.6.20100508.25\build\native\AWSSDKCPP-IAM.redist.targets" Condition="Exists('..\packages\AWSSDKCPP-IAM.redist.1.6.20100508.25\build\native\AWSSDKCPP-IAM.redist.targets')" />
+    <Import Project="..\packages\AWSSDKCPP-IAM.1.6.20100508.25\build\native\AWSSDKCPP-IAM.targets" Condition="Exists('..\packages\AWSSDKCPP-IAM.1.6.20100508.25\build\native\AWSSDKCPP-IAM.targets')" />
+    <Import Project="..\packages\AWSSDKCPP-EC2.Win32.redist.1.6.20161115.11\build\native\AWSSDKCPP-EC2.Win32.redist.targets" Condition="Exists('..\packages\AWSSDKCPP-EC2.Win32.redist.1.6.20161115.11\build\native\AWSSDKCPP-EC2.Win32.redist.targets')" />
+    <Import Project="..\packages\AWSSDKCPP-EC2.Win32.1.6.20161115.11\build\native\AWSSDKCPP-EC2.Win32.targets" Condition="Exists('..\packages\AWSSDKCPP-EC2.Win32.1.6.20161115.11\build\native\AWSSDKCPP-EC2.Win32.targets')" />
+    <Import Project="..\packages\AWSSDKCPP-EC2.x64.redist.1.6.20161115.11\build\native\AWSSDKCPP-EC2.x64.redist.targets" Condition="Exists('..\packages\AWSSDKCPP-EC2.x64.redist.1.6.20161115.11\build\native\AWSSDKCPP-EC2.x64.redist.targets')" />
+    <Import Project="..\packages\AWSSDKCPP-EC2.x64.1.6.20161115.11\build\native\AWSSDKCPP-EC2.x64.targets" Condition="Exists('..\packages\AWSSDKCPP-EC2.x64.1.6.20161115.11\build\native\AWSSDKCPP-EC2.x64.targets')" />
+    <Import Project="..\packages\AWSSDKCPP-EC2.1.6.20161115.25\build\native\AWSSDKCPP-EC2.targets" Condition="Exists('..\packages\AWSSDKCPP-EC2.1.6.20161115.25\build\native\AWSSDKCPP-EC2.targets')" />
+    <Import Project="..\packages\AWSSDKCPP-RDS.redist.1.6.20141031.25\build\native\AWSSDKCPP-RDS.redist.targets" Condition="Exists('..\packages\AWSSDKCPP-RDS.redist.1.6.20141031.25\build\native\AWSSDKCPP-RDS.redist.targets')" />
+    <Import Project="..\packages\AWSSDKCPP-RDS.1.6.20141031.25\build\native\AWSSDKCPP-RDS.targets" Condition="Exists('..\packages\AWSSDKCPP-RDS.1.6.20141031.25\build\native\AWSSDKCPP-RDS.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -112,5 +123,14 @@
     <Error Condition="!Exists('..\packages\AWSSDKCPP-Core.1.6.25\build\native\AWSSDKCPP-Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\AWSSDKCPP-Core.1.6.25\build\native\AWSSDKCPP-Core.targets'))" />
     <Error Condition="!Exists('..\packages\AWSSDKCPP-DynamoDB.redist.1.6.20120810.25\build\native\AWSSDKCPP-DynamoDB.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\AWSSDKCPP-DynamoDB.redist.1.6.20120810.25\build\native\AWSSDKCPP-DynamoDB.redist.targets'))" />
     <Error Condition="!Exists('..\packages\AWSSDKCPP-DynamoDB.1.6.20120810.25\build\native\AWSSDKCPP-DynamoDB.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\AWSSDKCPP-DynamoDB.1.6.20120810.25\build\native\AWSSDKCPP-DynamoDB.targets'))" />
+    <Error Condition="!Exists('..\packages\AWSSDKCPP-IAM.redist.1.6.20100508.25\build\native\AWSSDKCPP-IAM.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\AWSSDKCPP-IAM.redist.1.6.20100508.25\build\native\AWSSDKCPP-IAM.redist.targets'))" />
+    <Error Condition="!Exists('..\packages\AWSSDKCPP-IAM.1.6.20100508.25\build\native\AWSSDKCPP-IAM.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\AWSSDKCPP-IAM.1.6.20100508.25\build\native\AWSSDKCPP-IAM.targets'))" />
+    <Error Condition="!Exists('..\packages\AWSSDKCPP-EC2.Win32.redist.1.6.20161115.11\build\native\AWSSDKCPP-EC2.Win32.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\AWSSDKCPP-EC2.Win32.redist.1.6.20161115.11\build\native\AWSSDKCPP-EC2.Win32.redist.targets'))" />
+    <Error Condition="!Exists('..\packages\AWSSDKCPP-EC2.Win32.1.6.20161115.11\build\native\AWSSDKCPP-EC2.Win32.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\AWSSDKCPP-EC2.Win32.1.6.20161115.11\build\native\AWSSDKCPP-EC2.Win32.targets'))" />
+    <Error Condition="!Exists('..\packages\AWSSDKCPP-EC2.x64.redist.1.6.20161115.11\build\native\AWSSDKCPP-EC2.x64.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\AWSSDKCPP-EC2.x64.redist.1.6.20161115.11\build\native\AWSSDKCPP-EC2.x64.redist.targets'))" />
+    <Error Condition="!Exists('..\packages\AWSSDKCPP-EC2.x64.1.6.20161115.11\build\native\AWSSDKCPP-EC2.x64.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\AWSSDKCPP-EC2.x64.1.6.20161115.11\build\native\AWSSDKCPP-EC2.x64.targets'))" />
+    <Error Condition="!Exists('..\packages\AWSSDKCPP-EC2.1.6.20161115.25\build\native\AWSSDKCPP-EC2.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\AWSSDKCPP-EC2.1.6.20161115.25\build\native\AWSSDKCPP-EC2.targets'))" />
+    <Error Condition="!Exists('..\packages\AWSSDKCPP-RDS.redist.1.6.20141031.25\build\native\AWSSDKCPP-RDS.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\AWSSDKCPP-RDS.redist.1.6.20141031.25\build\native\AWSSDKCPP-RDS.redist.targets'))" />
+    <Error Condition="!Exists('..\packages\AWSSDKCPP-RDS.1.6.20141031.25\build\native\AWSSDKCPP-RDS.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\AWSSDKCPP-RDS.1.6.20141031.25\build\native\AWSSDKCPP-RDS.targets'))" />
   </Target>
 </Project>

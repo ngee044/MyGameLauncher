@@ -28,8 +28,16 @@
     <ClCompile Include="aws_io.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClInclude Include="aws_accesskey.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="aws_accesskey.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

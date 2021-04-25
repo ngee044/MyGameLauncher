@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1231
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MyGameLauncher", "MyGameLauncher\MyGameLauncher.vcxproj", "{DFAD05BF-3A56-42D7-80A0-10B88968545F}"
 EndProject
@@ -10,9 +10,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common_header", "Common_hea
 		Common\singleton.h = Common\singleton.h
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AWS_IO", "AWS_IO\AWS_IO.vcxproj", "{B9356265-0FE7-415D-88D2-10972599622C}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UIComponent", "UIComponent\UIComponent.vcxproj", "{97A06269-5673-48A8-8C53-F0E5AEA3A46E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LoginUserInfo", "LoginUserInfo\LoginUserInfo.vcxproj", "{C5AA57DB-9CE4-4E39-949B-DCAE45973570}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LanguagePack", "LanguagePack\LanguagePack.vcxproj", "{C1CDE338-8BD1-4FC2-A656-46B8A482801D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,19 +26,24 @@ Global
 		{DFAD05BF-3A56-42D7-80A0-10B88968545F}.Debug|x64.Build.0 = Debug|x64
 		{DFAD05BF-3A56-42D7-80A0-10B88968545F}.Release|x64.ActiveCfg = Release|x64
 		{DFAD05BF-3A56-42D7-80A0-10B88968545F}.Release|x64.Build.0 = Release|x64
-		{B9356265-0FE7-415D-88D2-10972599622C}.Debug|x64.ActiveCfg = Debug|x64
-		{B9356265-0FE7-415D-88D2-10972599622C}.Debug|x64.Build.0 = Debug|x64
-		{B9356265-0FE7-415D-88D2-10972599622C}.Release|x64.ActiveCfg = Release|x64
-		{B9356265-0FE7-415D-88D2-10972599622C}.Release|x64.Build.0 = Release|x64
 		{97A06269-5673-48A8-8C53-F0E5AEA3A46E}.Debug|x64.ActiveCfg = Debug|x64
 		{97A06269-5673-48A8-8C53-F0E5AEA3A46E}.Debug|x64.Build.0 = Debug|x64
 		{97A06269-5673-48A8-8C53-F0E5AEA3A46E}.Release|x64.ActiveCfg = Release|x64
 		{97A06269-5673-48A8-8C53-F0E5AEA3A46E}.Release|x64.Build.0 = Release|x64
+		{C5AA57DB-9CE4-4E39-949B-DCAE45973570}.Debug|x64.ActiveCfg = Debug|x64
+		{C5AA57DB-9CE4-4E39-949B-DCAE45973570}.Debug|x64.Build.0 = Debug|x64
+		{C5AA57DB-9CE4-4E39-949B-DCAE45973570}.Release|x64.ActiveCfg = Release|x64
+		{C5AA57DB-9CE4-4E39-949B-DCAE45973570}.Release|x64.Build.0 = Release|x64
+		{C1CDE338-8BD1-4FC2-A656-46B8A482801D}.Debug|x64.ActiveCfg = Debug|x64
+		{C1CDE338-8BD1-4FC2-A656-46B8A482801D}.Debug|x64.Build.0 = Debug|x64
+		{C1CDE338-8BD1-4FC2-A656-46B8A482801D}.Release|x64.ActiveCfg = Release|x64
+		{C1CDE338-8BD1-4FC2-A656-46B8A482801D}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
+		Qt5Version = 5.15.2_msvc2019_64
 		SolutionGuid = {01F1BBBE-C70D-45E3-A825-5C46EBD8B633}
 	EndGlobalSection
 EndGlobal

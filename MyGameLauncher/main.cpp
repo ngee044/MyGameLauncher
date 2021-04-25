@@ -1,9 +1,12 @@
 #include <iostream>
 #include <QtWidgets/QApplication>
 
+#include "../LoginUserInfo/LoginUserInfo.h"
 #include "LoginPage.h"
 #include "MyGameLauncher.h"
-#include "../AWS_IO/aws_io.h"
+
+#include <QtSql/QtSql>
+#include <QtSql/QSqlDatabase>
 
 class MyCustomHttpClientFactory
 {
@@ -12,30 +15,18 @@ class MyCustomHttpClientFactory
 
 int main(int argc, char *argv[])
 {
-#if 0
-	Aws::SDKOptions options;
-	options.httpOptions.httpClientFactory_create_fn = []() {
-		return Aws::MakeShared<MyCustomHttpClientFactory>(
-			"ALLOC_TAG", arg1);
-	};
-	Aws::InitAPI(options);
-	{
-		std::cout << "hello world!";
-		// make your sdk calls here
-	}
-	Aws::ShutdownAPI(options);
+	LoginUserInfo info;
+	return -1;
+	QApplication a(argc, argv);
+	qDebug() << "hello world!";
 	return 0;
-#endif
-	AWS_IO aws_io;
-	return 0;
-
+#if 1
+#else
     QApplication a(argc, argv);
-#if 0
     LoginPage w;
     w.show();
-#else
-	MyGameLauncher launcher;
-	launcher.show();
+	//MyGameLauncher launcher;
+	//launcher.show();
 #endif
     return a.exec();
 }
