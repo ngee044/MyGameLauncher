@@ -15,18 +15,13 @@ class MyCustomHttpClientFactory
 
 int main(int argc, char *argv[])
 {
-	LoginUserInfo info;
-	return -1;
-	QApplication a(argc, argv);
-	qDebug() << "hello world!";
-	return 0;
-#if 1
-#else
     QApplication a(argc, argv);
+#if 0
     LoginPage w;
     w.show();
-	//MyGameLauncher launcher;
-	//launcher.show();
+#else
+	MyGameLauncher launcher;
+	launcher.show();
 #endif
     return a.exec();
 }

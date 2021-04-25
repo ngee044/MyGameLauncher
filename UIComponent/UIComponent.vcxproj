@@ -89,7 +89,7 @@
   <ItemGroup>
     <ClCompile Include="TitleBar.cpp" />
     <ClCompile Include="UIFactory.cpp" />
-    <ClInclude Include="CommonUi.hpp" />
+    <QtMoc Include="CommonUi.hpp" />
     <QtMoc Include="TitleBar.h" />
     <ClInclude Include="uicomponent_global.h" />
     <ClInclude Include="UIFactory.h" />

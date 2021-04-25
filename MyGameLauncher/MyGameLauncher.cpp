@@ -1,6 +1,8 @@
 #include <QApplication>
 #include <QDebug>
 #include <TitleBar.h>
+#include "../global_common.h"
+#include "../UIComponent/CommonUi.hpp"
 #include "MyGameLauncher.h"
 
 MyGameLauncher::MyGameLauncher(QWidget *parent)
@@ -31,6 +33,23 @@ void MyGameLauncher::initLayout()
 	ui.login_status_widget_->setStyleSheet("border:1px solid red;");
 	ui.game_list_widget_->setStyleSheet("border:1px solid green;");
 	ui.main_widget_->setStyleSheet("border:1px solid blue;");
+
+	//UI
+	GameSelectorButton* mobile_game_bt_ = new GameSelectorButton();
+	mobile_game_bt_->setText(_kor("모바일 게임"));
+
+	GameSelectorButton* pc_game_bt_ = new GameSelectorButton();
+	pc_game_bt_->setText(_kor("PC 게임"));
+
+	QVBoxLayout* left_menu_lay = new QVBoxLayout;
+	left_menu_lay->setContentsMargins(0, 0, 0, 0);
+	left_menu_lay->setSpacing(0);
+	left_menu_lay->setAlignment(Qt::AlignTop);
+
+	left_menu_lay->addWidget(mobile_game_bt_);
+	left_menu_lay->addWidget(pc_game_bt_);
+
+	ui.game_list_widget_->setLayout(left_menu_lay);
 }
 
 void MyGameLauncher::resizeEvent(QResizeEvent* event)

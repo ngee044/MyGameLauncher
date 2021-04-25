@@ -7,6 +7,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MyGameLauncher", "MyGameLau
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common_header", "Common_header", "{22C6C7BD-A2C3-4F32-9A0F-F5AC391B58E9}"
 	ProjectSection(SolutionItems) = preProject
+		global_common.h = global_common.h
 		Common\singleton.h = Common\singleton.h
 	EndProjectSection
 EndProject
@@ -43,7 +44,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		Qt5Version = 5.15.2_msvc2019_64
 		SolutionGuid = {01F1BBBE-C70D-45E3-A825-5C46EBD8B633}
+		Qt5Version = 5.15.2_msvc2019_64
 	EndGlobalSection
 EndGlobal

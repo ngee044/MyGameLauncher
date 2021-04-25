@@ -28,9 +28,6 @@
     <ClCompile Include="UIComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClInclude Include="CommonUi.hpp">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="UIComponent.h">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -53,6 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="TitleBar.h">
+      <Filter>Source Files</Filter>
+    </QtMoc>
+    <QtMoc Include="CommonUi.hpp">
       <Filter>Source Files</Filter>
     </QtMoc>
   </ItemGroup>

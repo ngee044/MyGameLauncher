@@ -7,6 +7,7 @@
 #include "ui_MyGameLauncher.h"
 
 class TitleBar;
+class GameSelectorButton;
 
 class MyGameLauncher : public QMainWindow
 {
@@ -26,4 +27,8 @@ private:
 
 	TitleBar* titlebar_ = nullptr;
 	USER user_info_;
+	
+	GameSelectorButton* mobile_game_bt_ = nullptr;
+	GameSelectorButton* pc_game_bt_ = nullptr;
+
 };
