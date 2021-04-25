@@ -15,7 +15,7 @@ class TextContents : public QWidget
 {
 	Q_OBJECT
 public:
-	//User Info Class Ãß°¡ÇÏ¿© ³»¿ë Ãß°¡ÇØ¾ßÇÔ
+	//User Info Class ì¶”ê°€í•˜ì—¬ ë‚´ìš© ì¶”ê°€í•´ì•¼í•¨
 	TextContents(QString text, USER user) : text_(text), user_info_(user) { initLayout(); }
 	~TextContents();
 
@@ -39,7 +39,7 @@ protected:
 		auto main_lay = new QHBoxLayout;
 		
 		QString date;
-		date.sprintf("%02:%02", QTime::currentTime().hour(), QTime::currentTime().minute());
+		date.sprintf("%02d:%02d", QTime::currentTime().hour(), QTime::currentTime().minute());
 		user_id_and_time_ = new QLabel;
 		user_id_and_time_->setText(user_info_.nick_name_ + " " + date);
 		text_layout_->addWidget(user_id_and_time_);
