@@ -16,6 +16,10 @@ class MyCustomHttpClientFactory
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+
+    LoginUserInfo info;
+
+    return 0;
 #if 0
     LoginPage w;
     w.show();

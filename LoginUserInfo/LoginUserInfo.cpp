@@ -6,5 +6,10 @@
 
 LoginUserInfo::LoginUserInfo()
 {
+	qDebug() << QSqlDatabase::drivers();
 	QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
+
+	qDebug() << db.open();
+
+	db.
 }
