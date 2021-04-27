@@ -4,8 +4,11 @@
 #include <QToolButton>
 #include <QDebug>
 
+#include "../global_common.h"
 #include "LoginPage.h"
 #include "MyGameLauncher.h"
+#include "../UIComponent/UIFactory.h"
+#include "../LoginUserInfo/LoginUserManager.h"
 
 LoginPage::LoginPage(QWidget *parent)
 	: QWidget(parent)
@@ -31,25 +34,35 @@ void LoginPage::slotLogin()
 {
 	QString id = ui.lineEdit_id->text();
 	QString pw = ui.lineEdit_pw->text();
-
-	//TODO.. connects AWS DB
-	if (id == "admin")
+// 0 pw error
+// -1 id error
+// 1 is login
+	auto idx = LoginUserManager::Instance()->setUserLogin(id, pw);
+	switch (idx)
 	{
-		if (pw == "1234")
-		{
-			MyGameLauncher* main = new MyGameLauncher();
-			main->show();
-
-			this->hide();
-		}
-		else
-		{
-			//TODO MessageBox
-		}
+	case 0:
+	{
+		auto dlg = UIFactory::showMsgBox(_kor("로그인 실패"),_kor("비밀번호가 틀렸습니다"));
+		dlg->exec();
 	}
-	else
+		break;
+	case -1:
 	{
-		//TODO MessageBox;
+		auto dlg = UIFactory::showMsgBox(_kor("로그인 실패"), _kor("아이디가 없습니다."));
+		dlg->exec();
+
+	}
+		break;
+	case 1:
+	{
+		MyGameLauncher* main = new MyGameLauncher();
+		main->show();
+
+		this->hide();
+	}
+		break;
+	default:
+		break;
 	}
 
 }

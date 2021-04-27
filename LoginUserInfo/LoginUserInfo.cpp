@@ -1,31 +1,68 @@
 #include <QDebug>
 #include <QtCore/QCoreApplication>
 #include <QNetworkAccessManager>
-#include <QSetting>
+#include <qsqlquerymodel.h>
 #include "LoginUserInfo.h"
 
 LoginUserInfo::LoginUserInfo()
 {
-	QSetting setting("configure.ini", QSettings::IniFormat);
-	setting.beginGroup("database");
-	
-	QString name = setting.value("name").toString();
-	QString hostname = setting.value("hostname").toString();
-	QString pw = setting.value("password").toString();
-	int port = setting.value("port").toInt();
-
 	qDebug() << QSqlDatabase::drivers();
-	QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
-	//todo db setting
 	
-	if(db.open())
+}
+
+// 0 pw error
+// -1 id error
+// 1 is login
+int LoginUserInfo::Login(const QString& id, const QString& pw)
+{
+	QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
+	db.setHostName("userlogindb.cug9zbehw6m0.ap-northeast-2.rds.amazonaws.com");
+	db.setPort(3306);
+	db.setDatabaseName("LoginDB");
+	db.setUserName("admin");
+	db.setPassword("gkrtjr12");
+
+	if (db.open())
 	{
-            qDebug() << "connected...aws rds mysql db";
+		const QString table_name = "LoginUserInfo";
+		QSqlQuery query("SELECT * FROM " + table_name);
+		int fieldNo1 = query.record().indexOf("ID");
+		int fieldNo2 = query.record().indexOf("PW");
+		while (query.next())
+		{
+#if 0
+			qDebug() << query.value(fieldNo1).toString();
+			qDebug() << query.value(fieldNo2).toString();
+#endif
+		}
 	}
 	else
 	{
-            qDebug() << "not load db server";
+		qDebug() << "Error qmysql..... not connected";
 	}
+
+	const QString table_name = "LoginUserInfo";
+	QSqlQuery query("SELECT * FROM " + table_name);
+	int fieldNo1 = query.record().indexOf("ID");
+	int fieldNo2 = query.record().indexOf("PW");
+	while (query.next())
+	{
+
+		if (id == query.value(fieldNo1).toString())
+		{
+			if (pw == query.value(fieldNo2).toString())
+			{
+				return 1;
+			}
+			else
+			{
+				return 0;
+			}
+		}
+	}
+	db.close();
+
+	return -1;
 }
 
 

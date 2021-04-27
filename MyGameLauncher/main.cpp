@@ -1,8 +1,9 @@
 #include <iostream>
 #include <QtWidgets/QApplication>
 
-#include "../LoginUserInfo/LoginUserInfo.h"
+#include "../LoginUserInfo/LoginUserManager.h"
 #include "LoginPage.h"
+#
 #include "MyGameLauncher.h"
 
 #include <QtSql/QtSql>
@@ -16,11 +17,9 @@ class MyCustomHttpClientFactory
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+#if 1
+    LoginUserManager::Instance();
 
-    LoginUserInfo info;
-
-    return 0;
-#if 0
     LoginPage w;
     w.show();
 #else

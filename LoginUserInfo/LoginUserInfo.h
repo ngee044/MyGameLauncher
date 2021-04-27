@@ -18,5 +18,10 @@ class LOGINUSERINFO_EXPORT LoginUserInfo
 {
 public:
     LoginUserInfo();
-	
+
+	int Login(const QString& id, const QString& pw);
+
+private:
+	QSqlDatabase* db_ = nullptr;
+
 };
