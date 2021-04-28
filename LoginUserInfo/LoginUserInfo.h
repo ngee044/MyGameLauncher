@@ -22,6 +22,6 @@ public:
 	int Login(const QString& id, const QString& pw);
 
 private:
-	QSqlDatabase* db_ = nullptr;
+	QSqlDatabase db_;
 
 };

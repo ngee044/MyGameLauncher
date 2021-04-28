@@ -32,6 +32,11 @@
     <Filter Include="Source Files\Module">
       <UniqueIdentifier>{2071b255-99a7-4a10-8a33-c8598a366e8e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="MyGameLauncher.qrc">
@@ -60,6 +65,12 @@
     <ClCompile Include="MyGameLauncherController.cpp">
       <Filter>Source Files\View\MainView</Filter>
     </ClCompile>
+    <ClCompile Include="MainLauncherWidget.cpp">
+      <Filter>Source Files\View\MainView</Filter>
+    </ClCompile>
+    <ClCompile Include="RightLauncherWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="MyGameLauncher.h">
@@ -71,12 +82,24 @@
     <QtMoc Include="ChatWidget.h">
       <Filter>Source Files\View\ChatView</Filter>
     </QtMoc>
+    <QtMoc Include="MainLauncherWidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="RightLauncherWidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="LoginPage.ui">
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="ChatWidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="MainLauncherWidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="RightLauncherWidget.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

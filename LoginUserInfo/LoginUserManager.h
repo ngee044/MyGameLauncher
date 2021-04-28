@@ -10,6 +10,8 @@ class LOGINUSERINFO_EXPORT LoginUserManager : public InSingleton<LoginUserManage
 public:
 	LoginUserManager();
 	~LoginUserManager();
+	LoginUserManager(const LoginUserManager&) = delete;
+	const LoginUserManager& operator = (const LoginUserManager&) = delete;
 
 	void initDB();
 	int setUserLogin(const QString id, const QString pw);

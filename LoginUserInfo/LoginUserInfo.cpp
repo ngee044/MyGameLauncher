@@ -7,7 +7,13 @@
 LoginUserInfo::LoginUserInfo()
 {
 	qDebug() << QSqlDatabase::drivers();
-	
+	db_ = QSqlDatabase::addDatabase("QMYSQL");
+	db_.setHostName("userlogindb.cug9zbehw6m0.ap-northeast-2.rds.amazonaws.com");
+	db_.setPort(3306);
+	db_.setDatabaseName("LoginDB");
+	db_.setUserName("admin");
+	db_.setPassword("gkrtjr12");
+
 }
 
 // 0 pw error
@@ -15,14 +21,7 @@ LoginUserInfo::LoginUserInfo()
 // 1 is login
 int LoginUserInfo::Login(const QString& id, const QString& pw)
 {
-	QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
-	db.setHostName("userlogindb.cug9zbehw6m0.ap-northeast-2.rds.amazonaws.com");
-	db.setPort(3306);
-	db.setDatabaseName("LoginDB");
-	db.setUserName("admin");
-	db.setPassword("gkrtjr12");
-
-	if (db.open())
+	if (db_.open())
 	{
 		const QString table_name = "LoginUserInfo";
 		QSqlQuery query("SELECT * FROM " + table_name);
@@ -60,7 +59,7 @@ int LoginUserInfo::Login(const QString& id, const QString& pw)
 			}
 		}
 	}
-	db.close();
+	db_.close();
 
 	return -1;
 }

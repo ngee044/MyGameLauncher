@@ -42,15 +42,16 @@ void LoginPage::slotLogin()
 	{
 	case 0:
 	{
-		auto dlg = UIFactory::showMsgBox(_kor("로그인 실패"),_kor("비밀번호가 틀렸습니다"));
+		auto dlg = UIFactory::showMsgBox(_kor("로그인 실패"), _kor("비밀번호가 틀렸습니다"));
 		dlg->exec();
+		delete dlg;
 	}
 		break;
 	case -1:
 	{
 		auto dlg = UIFactory::showMsgBox(_kor("로그인 실패"), _kor("아이디가 없습니다."));
 		dlg->exec();
-
+		delete dlg;
 	}
 		break;
 	case 1:

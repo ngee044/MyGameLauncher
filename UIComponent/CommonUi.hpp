@@ -66,10 +66,10 @@ public:
 	enum MsgButtonType { ONE, TWO, THREE };
 	MyMessageBox(const QString& title, const QString& msg, MsgButtonType type = ONE) {
 		this->setWindowFlags(Qt::FramelessWindowHint | Qt::Dialog);
-		this->setStyleSheet("QLabel {background-color: #a0a0a0;}");
+		this->setStyleSheet("QWidget {background-color: #2e2da6;}");
 		auto titlebar_label = new QLabel();
 		titlebar_label->setSizePolicy(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Preferred);
-		titlebar_label->setStyleSheet("font-size:38px; font-weight:bold; color:gray;");
+		titlebar_label->setStyleSheet("font-size:38px; font-weight:bold; color:gray; background-color:#151482;");
 		titlebar_label->setText(title);
 
 		auto msg_label = new QLabel();
@@ -84,15 +84,20 @@ public:
 		{
 			button_lay->addWidget(i, 1);
 		}
+		button_widget_ = new QWidget;
+		button_widget_->setLayout(button_lay);
+
 		auto lay = new QVBoxLayout();
 		lay->setContentsMargins(0, 0, 0, 0);
 		lay->setSpacing(12);
 		lay->addWidget(titlebar_label);
 		lay->addWidget(msg_label);
-		lay->addLayout(button_lay);
+		lay->addWidget(button_widget_);
 
 		this->setLayout(lay);
+		this->resize(275, 170);
 	}
+	void hideButton() { button_widget_->hide(); }
 	QVector<MyPushButton*> createButtonType(MsgButtonType type)
 	{
 		QVector<MyPushButton*> vbts;
@@ -121,6 +126,9 @@ public:
 		return vbts;
 	}
 	~MyMessageBox() {}
+
+private:
+	QWidget* button_widget_ = nullptr;
 };
 
 
