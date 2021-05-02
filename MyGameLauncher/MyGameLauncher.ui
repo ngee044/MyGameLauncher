@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1023</width>
-    <height>745</height>
+    <width>1146</width>
+    <height>774</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -160,15 +160,24 @@
         <widget class="QWidget" name="main_widget_" native="true">
          <layout class="QVBoxLayout" name="verticalLayout_3" stretch="8,2">
           <item>
-           <widget class="QLabel" name="label_image">
+           <widget class="QLabel" name="label_image_">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
+            <property name="font">
+             <font>
+              <family>Arial</family>
+              <pointsize>36</pointsize>
+             </font>
+            </property>
             <property name="text">
-             <string>image</string>
+             <string>좌 측 게임선택 버튼을 선택하세요</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
             </property>
            </widget>
           </item>
@@ -182,20 +191,29 @@
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_2">
              <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="2,1,1">
+              <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="2,1,1,1">
                <item>
                 <layout class="QVBoxLayout" name="verticalLayout_4">
                  <item>
-                  <widget class="QLabel" name="label_path">
+                  <widget class="QLabel" name="label_path_">
+                   <property name="font">
+                    <font>
+                     <family>Arial</family>
+                     <pointsize>14</pointsize>
+                    </font>
+                   </property>
                    <property name="text">
-                    <string>path: c:/mylauncher/PCGAME</string>
+                    <string>PATH: c:/mylauncher/PCGAME</string>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLabel" name="label_2">
-                   <property name="styleSheet">
-                    <string notr="true">background-color:#</string>
+                  <widget class="QLabel" name="label_game_title_">
+                   <property name="font">
+                    <font>
+                     <family>Arial</family>
+                     <pointsize>14</pointsize>
+                    </font>
                    </property>
                    <property name="text">
                     <string>GAME</string>
@@ -205,16 +223,95 @@
                 </layout>
                </item>
                <item>
-                <widget class="QPushButton" name="pushButton_down">
+                <widget class="QPushButton" name="pushButton_down_">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Arial</family>
+                   <pointsize>16</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton {border: 1px solid black; background-color:#4287f5; color: #021533;}
+
+QPushButton:pressed {border: 1px solid black; background-color:#364a69; color: white;}
+
+QPushButton:hover {border: 1px solid black; background-color:#353a42; color: white;}</string>
+                 </property>
                  <property name="text">
                   <string>DOWN</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="pushButton_delete">
+                <widget class="QPushButton" name="pushButton_delete_">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Arial</family>
+                   <pointsize>16</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton {border: 1px solid black; background-color:#4287f5; color: #021533;}
+
+QPushButton:pressed {border: 1px solid black; background-color:#364a69; color: white;}
+
+QPushButton:hover {border: 1px solid black; background-color:#353a42; color: white;}</string>
+                 </property>
                  <property name="text">
                   <string>DELETE</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_dir_">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Arial</family>
+                   <pointsize>16</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QPushButton {border: 1px solid black; background-color:#4287f5; color: #021533;}
+
+QPushButton:pressed {border: 1px solid black; background-color:#364a69; color: white;}
+
+QPushButton:hover {border: 1px solid black; background-color:#353a42; color: white;}</string>
+                 </property>
+                 <property name="text">
+                  <string>SET DIR</string>
                  </property>
                 </widget>
                </item>
@@ -264,13 +361,13 @@
               <property name="widgetResizable">
                <bool>true</bool>
               </property>
-              <widget class="QWidget" name="scrollAreaWidgetContents">
+              <widget class="QWidget" name="friend_list_widget_">
                <property name="geometry">
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>164</width>
-                 <height>513</height>
+                 <width>179</width>
+                 <height>534</height>
                 </rect>
                </property>
               </widget>

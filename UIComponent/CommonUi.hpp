@@ -58,12 +58,114 @@ public:
 		this->adjustSize();
 	}
 };
+
+class UICOMPONENT_EXPORT FriendListWidgetItem : public QWidget
+{
+	Q_OBJECT
+
+public:
+	enum FriendStatus { NOCONNECT = 0, CONECTED, PLAY };
+	FriendListWidgetItem(const QString id, FriendStatus status)
+	{
+		lb_id_ = new  QLabel();
+		lb_id_->setText(id);
+
+		status_label_ = new QLabel();
+
+		initLayout();
+		setFriendStatus(status);
+
+		//TODO style
+		this->setStyleSheet("");
+		
+	}
+	~FriendListWidgetItem() {}
+
+	void setFriendStatus(FriendStatus status)
+	{
+		QString txt = "";
+		switch (status)
+		{
+		case FriendListWidgetItem::NOCONNECT:
+			txt = "No Connect";
+			break;
+		case FriendListWidgetItem::CONECTED:
+			txt = "Connected";
+			break;
+		case FriendListWidgetItem::PLAY:
+			txt = "play game";
+			break;
+		default:
+			break;
+		}
+		if (status_label_ == nullptr)
+			status_label_ = new QLabel;
+
+		status_label_->setText(txt);
+
+	}
+	void initLayout()
+	{
+		this->setStyleSheet("background-color:gray; color:black; border: 1px solid orange;");
+		this->setMinimumHeight(35);
+		this->setAttribute(Qt::WA_Hover);
+		this->setMouseTracking(true);
+
+		QVBoxLayout* info_lay = new QVBoxLayout;
+		info_lay->setContentsMargins(9, 6, 9, 6);
+		info_lay->setSpacing(0); //¿ì¼± 0
+		
+		info_lay->addWidget(lb_id_);
+		info_lay->addWidget(status_label_);
+		
+		QHBoxLayout* main_lay = new QHBoxLayout;
+		main_lay->setContentsMargins(0, 0, 0, 0);
+		main_lay->setSpacing(0);
+		main_lay->addWidget(profile_label_);
+		main_lay->addLayout(info_lay);
+
+		this->setLayout(main_lay);
+	}
+signals:
+	void sigClicked();
+protected:
+	virtual void mousePressEvent(QMouseEvent* event) 
+	{
+		QWidget::mousePressEvent(event);
+		if (event->button() == Qt::LeftButton)
+		{
+			emit sigClicked();
+		}
+	}
+	virtual void mouseMoveEvent(QMouseEvent* event)
+	{
+		QWidget::mouseMoveEvent(event);
+		if (this->rect().contains(event->pos()))
+		{
+			//hover mouse widget
+			this->setStyleSheet("background-color:#4287f5; color:black; border: 1px solid red; font-weight: bold;");
+			this->setCursor(Qt::PointingHandCursor);
+		}
+		else
+		{
+			this->setStyleSheet("background-color:gray; color:black; border: 1px solid orange;");
+			this->setCursor(Qt::ArrowCursor);
+		}
+	}
+private:
+	QLabel* profile_label_ = nullptr;
+	QLabel* status_label_ = nullptr;
+	QLabel* lb_id_ = nullptr;
+	
+
+};
+
 class UICOMPONENT_EXPORT MyMessageBox : public QDialog
 {
 	Q_OBJECT
 	
 public:
-	enum MsgButtonType { ONE, TWO, THREE };
+	enum MsgButtonType { ONE = 0, TWO, THREE };
 	MyMessageBox(const QString& title, const QString& msg, MsgButtonType type = ONE) {
 		this->setWindowFlags(Qt::FramelessWindowHint | Qt::Dialog);
 		this->setStyleSheet("QWidget {background-color: #2e2da6;}");

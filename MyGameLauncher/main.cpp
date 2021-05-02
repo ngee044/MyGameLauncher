@@ -17,7 +17,7 @@ class MyCustomHttpClientFactory
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-#if 1
+#if 0
     LoginUserManager::Instance();
 
     LoginPage w;

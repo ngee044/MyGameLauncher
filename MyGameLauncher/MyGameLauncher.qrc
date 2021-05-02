@@ -4,5 +4,7 @@
         <file>resource/exit.png</file>
         <file>resource/tob_none_btn01.png</file>
         <file>resource/tob_none_btn02.png</file>
+        <file>resource/gransaga_m.PNG</file>
+        <file>resource/gransaga_pc.PNG</file>
     </qresource>
 </RCC>

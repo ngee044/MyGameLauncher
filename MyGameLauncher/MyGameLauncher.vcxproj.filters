@@ -71,6 +71,9 @@
     <ClCompile Include="RightLauncherWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FriendWidgetItem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="MyGameLauncher.h">
@@ -88,6 +91,9 @@
     <QtMoc Include="RightLauncherWidget.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="FriendWidgetItem.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="LoginPage.ui">
@@ -100,6 +106,9 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="RightLauncherWidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="FriendWidgetItem.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

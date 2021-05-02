@@ -5,3 +5,8 @@ MyMessageBox* UIFactory::showMsgBox(QString title, QString msg, MyMessageBox::Ms
 {
 	return new MyMessageBox(title, msg, type);
 }
+
+FriendListWidgetItem* UIFactory::createFriendListItem(QString id, FriendListWidgetItem::FriendStatus status)
+{
+	return new FriendListWidgetItem(id,  status);
+}

@@ -15,8 +15,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UIComponent", "UIComponent\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LoginUserInfo", "LoginUserInfo\LoginUserInfo.vcxproj", "{C5AA57DB-9CE4-4E39-949B-DCAE45973570}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LanguagePack", "LanguagePack\LanguagePack.vcxproj", "{C1CDE338-8BD1-4FC2-A656-46B8A482801D}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -35,16 +33,12 @@ Global
 		{C5AA57DB-9CE4-4E39-949B-DCAE45973570}.Debug|x64.Build.0 = Debug|x64
 		{C5AA57DB-9CE4-4E39-949B-DCAE45973570}.Release|x64.ActiveCfg = Release|x64
 		{C5AA57DB-9CE4-4E39-949B-DCAE45973570}.Release|x64.Build.0 = Release|x64
-		{C1CDE338-8BD1-4FC2-A656-46B8A482801D}.Debug|x64.ActiveCfg = Debug|x64
-		{C1CDE338-8BD1-4FC2-A656-46B8A482801D}.Debug|x64.Build.0 = Debug|x64
-		{C1CDE338-8BD1-4FC2-A656-46B8A482801D}.Release|x64.ActiveCfg = Release|x64
-		{C1CDE338-8BD1-4FC2-A656-46B8A482801D}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {01F1BBBE-C70D-45E3-A825-5C46EBD8B633}
 		Qt5Version = 5.15.2_msvc2019_64
+		SolutionGuid = {01F1BBBE-C70D-45E3-A825-5C46EBD8B633}
 	EndGlobalSection
 EndGlobal

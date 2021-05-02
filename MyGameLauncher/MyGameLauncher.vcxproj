@@ -100,11 +100,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="FriendWidgetItem.cpp" />
     <ClCompile Include="MainLauncherWidget.cpp" />
     <ClCompile Include="MyGameLauncherController.cpp" />
     <ClCompile Include="RightLauncherWidget.cpp" />
     <QtRcc Include="MyGameLauncher.qrc" />
     <QtUic Include="ChatWidget.ui" />
+    <QtUic Include="FriendWidgetItem.ui" />
     <QtUic Include="LoginPage.ui" />
     <QtUic Include="MainLauncherWidget.ui" />
     <QtUic Include="MyGameLauncher.ui" />
@@ -123,9 +125,6 @@
     <QtMoc Include="ChatWidget.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LanguagePack\LanguagePack.vcxproj">
-      <Project>{c1cde338-8bd1-4fc2-a656-46b8a482801d}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\LoginUserInfo\LoginUserInfo.vcxproj">
       <Project>{c5aa57db-9ce4-4e39-949b-dcae45973570}</Project>
     </ProjectReference>
@@ -140,6 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AccountManager.h" />
+    <QtMoc Include="FriendWidgetItem.h" />
     <QtMoc Include="RightLauncherWidget.h" />
     <QtMoc Include="MainLauncherWidget.h" />
   </ItemGroup>

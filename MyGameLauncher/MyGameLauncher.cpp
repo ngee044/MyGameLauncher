@@ -1,11 +1,13 @@
 #include <QApplication>
 #include <QDebug>
 #include <TitleBar.h>
+#include <QFileDialog>
 #include "../global_common.h"
 #include "../UIComponent/CommonUi.hpp"
+#include "../UIComponent/UIFactory.h"
 #include "MyGameLauncher.h"
 
-MyGameLauncher::MyGameLauncher(QWidget *parent)
+MyGameLauncher::MyGameLauncher(QWidget* parent)
 	: QMainWindow(parent)
 {
 	setWindowFlags(Qt::FramelessWindowHint);
@@ -16,11 +18,20 @@ MyGameLauncher::MyGameLauncher(QWidget *parent)
 	connection();
 }
 
+MyGameLauncher::~MyGameLauncher()
+{
+	clearFriendList();
+}
+
 void MyGameLauncher::connection()
 {
 	connect(ui.toolButton_hide, &QToolButton::clicked, this, [=]() { titlebar_->OnWindowsHideButtonClicked(); });
 	connect(ui.toolButton_resize, &QToolButton::clicked, this, [=]() { titlebar_->OnWindowsSizeButtonClicked(ui.toolButton_resize); });
 	connect(ui.toolButton_exit, &QToolButton::clicked, this, [=]() {QApplication::exit(); });
+
+	connect(ui.pushButton_down_, &QPushButton::clicked, this, &MyGameLauncher::slotDownButton);
+	connect(ui.pushButton_delete_, &QPushButton::clicked, this, &MyGameLauncher::slotDeleteButton);
+	connect(ui.pushButton_dir_, &QPushButton::clicked, this, &MyGameLauncher::slotSetDirButton);
 }
 
 void MyGameLauncher::initLayout()
@@ -37,9 +48,11 @@ void MyGameLauncher::initLayout()
 	//UI
 	GameSelectorButton* mobile_game_bt_ = new GameSelectorButton();
 	mobile_game_bt_->setText(_kor("모바일 게임"));
+	connect(mobile_game_bt_, &GameSelectorButton::clicked, [=]() { slotGameSelectButton(mobile_game_bt_); });
 
 	GameSelectorButton* pc_game_bt_ = new GameSelectorButton();
 	pc_game_bt_->setText(_kor("PC 게임"));
+	connect(pc_game_bt_, &GameSelectorButton::clicked, [=]() { slotGameSelectButton(pc_game_bt_); });
 
 	QVBoxLayout* left_menu_lay = new QVBoxLayout;
 	left_menu_lay->setContentsMargins(0, 0, 0, 0);
@@ -73,4 +86,111 @@ void MyGameLauncher::resizeEvent(QResizeEvent* event)
 	main_lay->setStretch(0, a);
 	main_lay->setStretch(1, b);
 	main_lay->setStretch(2, c);
+}
+
+void MyGameLauncher::setAccountInfo(const QString& id, const QString& vip)
+{
+	ui.label_id_->setText(id);
+	ui.label_vip_->setText(vip);
+
+	//TODO List
+	//setFriendList(friend list);
+}
+
+void MyGameLauncher::setFriendList(QVector<QPair<QString, int>>  id_list)
+{
+	auto list_layout = ui.friend_list_widget_->layout();
+	if (list_layout == nullptr)
+	{
+		list_layout = new QVBoxLayout;
+		ui.friend_list_widget_->setLayout(list_layout);
+	}
+
+	for (int i = 0; i < id_list.size(); ++i)
+	{
+		auto item = UIFactory::createFriendListItem(id_list[i].first, static_cast<FriendListWidgetItem::FriendStatus>(id_list[i].second));
+		list_layout->addWidget(item);
+		
+		//connect(item, &FriendListWidgetItem::sigClicked, [=]() {});
+		v_friend_list_item_.push_back(item);
+	}
+}
+
+void MyGameLauncher::updateFriendList()
+{
+	clearFriendList();
+
+	auto list = v_friend_list_item_;
+	if (list.empty())
+		return;
+
+	for (int i = 0; i < list.size(); ++i)
+	{
+		//TODO LIST UPDATE
+	}
+}
+
+void MyGameLauncher::clearFriendList()
+{
+	auto list = v_friend_list_item_;
+	for (int i = 0; i < list.size(); ++i)
+	{
+		delete list[i];
+		list[i] = nullptr;
+	}
+	v_friend_list_item_.clear();
+	QVector<FriendListWidgetItem*>().swap(v_friend_list_item_);
+	qDebug() << "v_friend_list_item_ cap = " << v_friend_list_item_.capacity();
+}
+
+void MyGameLauncher::slotDownButton()
+{
+	qDebug() << __func__ << __LINE__;
+}
+
+void MyGameLauncher::slotDeleteButton()
+{
+	auto dlg = UIFactory::showMsgBox(_kor("클라이언트 삭제"), _kor("정말 클라이언트를 삭제하시겠습니까?"), MyMessageBox::TWO);
+	if (dlg->exec())
+	{
+
+	}
+	else
+	{
+
+	}
+	delete dlg;
+	qDebug() << __func__ << __LINE__;
+}
+
+void MyGameLauncher::slotSetDirButton()
+{
+	QString path = QFileDialog::getExistingDirectory(this, _kor("설치 폴더 경로를 설정해주세요", "/home/"));
+
+	ui.label_path_->setText("PATH : " + path);
+}
+
+
+void MyGameLauncher::slotGameSelectButton(GameSelectorButton* sender)
+{
+	QString txt = sender->text();
+	if (txt == _kor("모바일 게임"))
+	{
+		download_path_ = ""; //default mobile path
+		download_ftp_url_ = ""; //set mobile game ftp url
+		ui.label_game_title_->setText(txt);
+		ui.label_image_->setPixmap(QPixmap(":/MyGameLauncher/resource/gransaga_m.PNG"));
+	}
+	else if (txt == _kor("PC 게임"))
+	{
+		download_path_ = ""; //default pc path
+		download_ftp_url_ = ""; //set pc game ftp url
+		ui.label_game_title_->setText(txt);
+		ui.label_image_->setPixmap(QPixmap(":/MyGameLauncher/resource/gransaga_pc.PNG"));
+	}
+	else
+	{
+		qDebug() << __func__ << __LINE__;
+		qDebug() << "range of out index";
+	}
 }
