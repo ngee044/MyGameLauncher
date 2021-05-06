@@ -1,24 +1,18 @@
 #include <iostream>
 #include <QtWidgets/QApplication>
 
-#include "../LoginUserInfo/LoginUserManager.h"
+#include "../LoginUserInfo/UserDBManager.h"
 #include "LoginPage.h"
-#
 #include "MyGameLauncher.h"
 
 #include <QtSql/QtSql>
 #include <QtSql/QSqlDatabase>
 
-class MyCustomHttpClientFactory
-{
-
-};
-
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-#if 0
-    LoginUserManager::Instance();
+#if 1
+    UserDBManager::Instance();
 
     LoginPage w;
     w.show();

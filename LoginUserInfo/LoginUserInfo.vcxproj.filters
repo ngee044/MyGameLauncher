@@ -25,7 +25,7 @@
     <ClCompile Include="LoginUserInfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClInclude Include="LoginUserManager.h">
+    <ClInclude Include="UserDBManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="LoginUserInfo.h">
@@ -33,7 +33,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="LoginUserManager.cpp">
+    <ClCompile Include="UserDBManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

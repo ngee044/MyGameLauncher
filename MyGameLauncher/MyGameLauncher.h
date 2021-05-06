@@ -1,14 +1,21 @@
 #pragma once
 
 #include <QtWidgets/QMainWindow>
-#include "AccountManager.h"
 #include "ChatWidget.h"
 #include <QPair>
+#include "../LoginUserInfo/UserDBManager.h"
 #include "ui_MyGameLauncher.h"
 
+class ChatWidget;
 class TitleBar;
 class GameSelectorButton;
 class FriendListWidgetItem;
+
+struct UserFriend
+{
+	QString id_;
+	int status_;
+};
 
 class MyGameLauncher : public QMainWindow
 {
@@ -17,8 +24,8 @@ class MyGameLauncher : public QMainWindow
 public:
     MyGameLauncher(QWidget *parent = Q_NULLPTR);
 	~MyGameLauncher();
-	void setAccountInfo(const QString& id, const QString& vip);
-	void setFriendList(QVector<QPair<QString, int>> id_list);
+	void setAccountInfo(const User& userinfo);
+	void setFriendList(QVector<UserFriend> id_list);
 	void updateFriendList();
 	void clearFriendList();
 
@@ -26,6 +33,7 @@ protected:
 	void connection();
 	void initLayout();
 	virtual void resizeEvent(QResizeEvent * event) override;
+
 
 public slots:
 	void slotDownButton();
@@ -37,7 +45,7 @@ private:
     Ui::MyGameLauncherClass ui;
 
 	TitleBar* titlebar_ = nullptr;
-	USER user_info_;
+	User user_info_;
 	
 	GameSelectorButton* mobile_game_bt_ = nullptr;
 	GameSelectorButton* pc_game_bt_ = nullptr;

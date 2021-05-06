@@ -6,5 +6,6 @@
         <file>resource/tob_none_btn02.png</file>
         <file>resource/gransaga_m.PNG</file>
         <file>resource/gransaga_pc.PNG</file>
+        <file>resource/profile.png</file>
     </qresource>
 </RCC>

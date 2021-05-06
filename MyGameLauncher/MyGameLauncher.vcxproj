@@ -100,23 +100,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="FriendWidgetItem.cpp" />
-    <ClCompile Include="MainLauncherWidget.cpp" />
     <ClCompile Include="MyGameLauncherController.cpp" />
-    <ClCompile Include="RightLauncherWidget.cpp" />
     <QtRcc Include="MyGameLauncher.qrc" />
     <QtUic Include="ChatWidget.ui" />
-    <QtUic Include="FriendWidgetItem.ui" />
     <QtUic Include="LoginPage.ui" />
-    <QtUic Include="MainLauncherWidget.ui" />
     <QtUic Include="MyGameLauncher.ui" />
     <QtMoc Include="MyGameLauncher.h" />
-    <ClCompile Include="AccountManager.cpp" />
     <ClCompile Include="ChatWidget.cpp" />
     <ClCompile Include="LoginPage.cpp" />
     <ClCompile Include="MyGameLauncher.cpp" />
     <ClCompile Include="main.cpp" />
-    <QtUic Include="RightLauncherWidget.ui" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="LoginPage.h" />
@@ -136,12 +129,6 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="AccountManager.h" />
-    <QtMoc Include="FriendWidgetItem.h" />
-    <QtMoc Include="RightLauncherWidget.h" />
-    <QtMoc Include="MainLauncherWidget.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

@@ -59,20 +59,8 @@
     <ClCompile Include="ChatWidget.cpp">
       <Filter>Source Files\View\ChatView</Filter>
     </ClCompile>
-    <ClCompile Include="AccountManager.cpp">
-      <Filter>Source Files\Module</Filter>
-    </ClCompile>
     <ClCompile Include="MyGameLauncherController.cpp">
       <Filter>Source Files\View\MainView</Filter>
-    </ClCompile>
-    <ClCompile Include="MainLauncherWidget.cpp">
-      <Filter>Source Files\View\MainView</Filter>
-    </ClCompile>
-    <ClCompile Include="RightLauncherWidget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FriendWidgetItem.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -85,15 +73,6 @@
     <QtMoc Include="ChatWidget.h">
       <Filter>Source Files\View\ChatView</Filter>
     </QtMoc>
-    <QtMoc Include="MainLauncherWidget.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="RightLauncherWidget.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="FriendWidgetItem.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="LoginPage.ui">
@@ -102,22 +81,8 @@
     <QtUic Include="ChatWidget.ui">
       <Filter>Form Files</Filter>
     </QtUic>
-    <QtUic Include="MainLauncherWidget.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="RightLauncherWidget.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="FriendWidgetItem.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="AccountManager.h">
-      <Filter>Source Files\Module</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

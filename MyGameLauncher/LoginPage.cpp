@@ -8,7 +8,7 @@
 #include "LoginPage.h"
 #include "MyGameLauncher.h"
 #include "../UIComponent/UIFactory.h"
-#include "../LoginUserInfo/LoginUserManager.h"
+#include "../LoginUserInfo/UserDBManager.h"
 
 LoginPage::LoginPage(QWidget *parent)
 	: QWidget(parent)
@@ -34,10 +34,10 @@ void LoginPage::slotLogin()
 {
 	QString id = ui.lineEdit_id->text();
 	QString pw = ui.lineEdit_pw->text();
-// 0 pw error
-// -1 id error
-// 1 is login
-	auto idx = LoginUserManager::Instance()->setUserLogin(id, pw);
+	// 0 pw error
+	// -1 id error
+	// 1 is login
+	auto idx = UserDBManager::Instance()->setUserLogin(id, pw);
 	switch (idx)
 	{
 	case 0:
@@ -57,6 +57,7 @@ void LoginPage::slotLogin()
 	case 1:
 	{
 		MyGameLauncher* main = new MyGameLauncher();
+		main->setAccountInfo(UserDBManager::Instance()->getUserInfo(id));
 		main->show();
 
 		this->hide();

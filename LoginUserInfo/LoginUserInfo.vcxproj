@@ -99,9 +99,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="LoginUserManager.cpp" />
+    <ClCompile Include="UserDBManager.cpp" />
     <ClInclude Include="loginuserinfo_global.h" />
-    <ClInclude Include="LoginUserManager.h" />
+    <ClInclude Include="UserDBManager.h" />
     <ClInclude Include="LoginUserInfo.h" />
     <ClCompile Include="LoginUserInfo.cpp" />
   </ItemGroup>

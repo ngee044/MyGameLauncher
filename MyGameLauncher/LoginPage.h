@@ -2,6 +2,7 @@
 
 #include <QWidget>
 #include "ui_LoginPage.h"
+#include "MyGameLauncher.h"
 
 class LoginPage : public QWidget
 {
@@ -10,7 +11,6 @@ class LoginPage : public QWidget
 public:
 	LoginPage(QWidget *parent = Q_NULLPTR);
 	~LoginPage();
-
 	void connection();
 
 public slots:

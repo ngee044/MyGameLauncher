@@ -72,12 +72,10 @@ public:
 
 		status_label_ = new QLabel();
 
+		profile_label_ = new QLabel();
+		profile_label_->setPixmap(QPixmap(":/MyGameLauncher/resource/profile.png").scaled(52, 52));
 		initLayout();
 		setFriendStatus(status);
-
-		//TODO style
-		this->setStyleSheet("");
-		
 	}
 	~FriendListWidgetItem() {}
 
@@ -106,13 +104,13 @@ public:
 	}
 	void initLayout()
 	{
-		this->setStyleSheet("background-color:gray; color:black; border: 1px solid orange;");
+		this->setStyleSheet("font-size: 17px; background-color:gray; color:black; border: 1px solid orange;");
 		this->setMinimumHeight(35);
 		this->setAttribute(Qt::WA_Hover);
 		this->setMouseTracking(true);
 
 		QVBoxLayout* info_lay = new QVBoxLayout;
-		info_lay->setContentsMargins(9, 6, 9, 6);
+		info_lay->setContentsMargins(0,0,0,0);
 		info_lay->setSpacing(0); //¿ì¼± 0
 		
 		info_lay->addWidget(lb_id_);
@@ -129,9 +127,9 @@ public:
 signals:
 	void sigClicked();
 protected:
-	virtual void mousePressEvent(QMouseEvent* event) 
+	virtual void mouseDoubleClickEvent(QMouseEvent* event) 
 	{
-		QWidget::mousePressEvent(event);
+		QWidget::mouseDoubleClickEvent(event);
 		if (event->button() == Qt::LeftButton)
 		{
 			emit sigClicked();
@@ -139,25 +137,25 @@ protected:
 	}
 	virtual void mouseMoveEvent(QMouseEvent* event)
 	{
-		QWidget::mouseMoveEvent(event);
-		if (this->rect().contains(event->pos()))
+	}
+	virtual bool event(QEvent* event) override
+	{
+		if (event->type() == QEvent::HoverEnter)
 		{
-			//hover mouse widget
-			this->setStyleSheet("background-color:#4287f5; color:black; border: 1px solid red; font-weight: bold;");
+			this->setStyleSheet("font-size: 17px; background-color:#4287f5; color:black; border: 1px solid red; font-weight: bold;");
 			this->setCursor(Qt::PointingHandCursor);
 		}
-		else
+		else if (event->type() == QEvent::HoverLeave)
 		{
-			this->setStyleSheet("background-color:gray; color:black; border: 1px solid orange;");
+			this->setStyleSheet("font-size: 17px; background-color:gray; color:black; border: 1px solid orange;");
 			this->setCursor(Qt::ArrowCursor);
 		}
+		return QWidget::event(event);
 	}
 private:
 	QLabel* profile_label_ = nullptr;
 	QLabel* status_label_ = nullptr;
 	QLabel* lb_id_ = nullptr;
-	
-
 };
 
 class UICOMPONENT_EXPORT MyMessageBox : public QDialog

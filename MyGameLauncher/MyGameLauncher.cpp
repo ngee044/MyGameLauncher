@@ -5,7 +5,10 @@
 #include "../global_common.h"
 #include "../UIComponent/CommonUi.hpp"
 #include "../UIComponent/UIFactory.h"
+#include "../LoginUserInfo/UserDBManager.h"
 #include "MyGameLauncher.h"
+#include "ChatWidget.h"
+#include <QtNetwork/qnetworkrequest.h>
 
 MyGameLauncher::MyGameLauncher(QWidget* parent)
 	: QMainWindow(parent)
@@ -88,30 +91,47 @@ void MyGameLauncher::resizeEvent(QResizeEvent* event)
 	main_lay->setStretch(2, c);
 }
 
-void MyGameLauncher::setAccountInfo(const QString& id, const QString& vip)
+void MyGameLauncher::setAccountInfo(const User& userinfo)
 {
-	ui.label_id_->setText(id);
-	ui.label_vip_->setText(vip);
+	ui.label_id_->setText(userinfo.Id_);
+	ui.label_vip_->setText(QString::number(userinfo.vip_level_));
 
-	//TODO List
-	//setFriendList(friend list);
+	user_info_ = userinfo;
+	auto qstr = user_info_.friend_list_;
+	QVector<UserFriend> list;
+	list.reserve(qstr.size());
+
+	for (int i = 0; i < qstr.size(); ++i)
+	{
+		UserFriend fr;
+		fr.id_ = qstr[i];
+		fr.status_ = UserDBManager::Instance()->getUserStatus(qstr[i]); //상태 변화가 필요
+		list.push_back(fr);
+	}
+	setFriendList(list);
 }
 
-void MyGameLauncher::setFriendList(QVector<QPair<QString, int>>  id_list)
+void MyGameLauncher::setFriendList(QVector<UserFriend>  id_list)
 {
 	auto list_layout = ui.friend_list_widget_->layout();
 	if (list_layout == nullptr)
 	{
 		list_layout = new QVBoxLayout;
+		list_layout->setContentsMargins(0, 0, 0, 0);
+		list_layout->setSpacing(1);
+		list_layout->setAlignment(Qt::AlignTop);
 		ui.friend_list_widget_->setLayout(list_layout);
 	}
 
 	for (int i = 0; i < id_list.size(); ++i)
 	{
-		auto item = UIFactory::createFriendListItem(id_list[i].first, static_cast<FriendListWidgetItem::FriendStatus>(id_list[i].second));
+		auto item = UIFactory::createFriendListItem(id_list[i].id_, static_cast<FriendListWidgetItem::FriendStatus>(id_list[i].status_));
 		list_layout->addWidget(item);
 		
-		//connect(item, &FriendListWidgetItem::sigClicked, [=]() {});
+		connect(item, &FriendListWidgetItem::sigClicked, [=]() {
+			ChatWidget* widget = new ChatWidget;
+			widget->show();
+			});
 		v_friend_list_item_.push_back(item);
 	}
 }
