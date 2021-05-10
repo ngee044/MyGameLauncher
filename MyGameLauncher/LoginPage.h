@@ -16,6 +16,9 @@ public:
 public slots:
 	void slotLogin();
 
+protected:
+	virtual void keyPressEvent(QKeyEvent* event) override;
+
 private:
 	Ui::LoginPage ui;
 };

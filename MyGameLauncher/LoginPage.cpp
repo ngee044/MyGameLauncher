@@ -30,6 +30,16 @@ void LoginPage::connection()
 	connect(ui.toolButton_exit, &QToolButton::clicked, this, [=]() { QApplication::exit(); });
 }
 
+void LoginPage::keyPressEvent(QKeyEvent* event)
+{
+	if (event->key() == Qt::Key_Enter || 
+		event->key() == Qt::Key_Return)
+	{
+		slotLogin();
+	}
+	QWidget::keyPressEvent(event);
+}
+
 void LoginPage::slotLogin()
 {
 	QString id = ui.lineEdit_id->text();

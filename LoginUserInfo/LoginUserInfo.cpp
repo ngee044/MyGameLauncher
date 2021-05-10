@@ -83,7 +83,8 @@ QString LoginUserInfo::getUserInfo(const QString& targetID, const QString column
 {
 	QSqlQuery query("SELECT * FROM " + ColumnName::table_name_);
 	
-	int index = query.record().indexOf(targetID);
+	//indexOf에 column name을 입력
+	int index = query.record().indexOf(ColumnName::user_id_);
 	int fieldNo = query.record().indexOf(column);
 	while (query.next())
 	{
