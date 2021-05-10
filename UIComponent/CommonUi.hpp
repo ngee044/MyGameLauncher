@@ -32,8 +32,7 @@ public:
 		this->setCursor(Qt::PointingHandCursor);
 		this->setStyleSheet(
 			"QToolButton:hover{ color:white; background-color: orange; }"
-			"QToolButton{ color:black; background-color: gray; font-size: 23px; font-weight: bold; }"
-			);
+			"QToolButton{ color:black; background-color: gray; font-size: 23px; font-weight: bold; }");
 	}
 
 protected:
@@ -100,7 +99,7 @@ public:
 			status_label_ = new QLabel;
 
 		status_label_->setText(txt);
-
+		status_ = static_cast<int>(status);
 	}
 	void initLayout()
 	{
@@ -156,6 +155,8 @@ private:
 	QLabel* profile_label_ = nullptr;
 	QLabel* status_label_ = nullptr;
 	QLabel* lb_id_ = nullptr;
+
+	int status_;
 };
 
 class UICOMPONENT_EXPORT MyMessageBox : public QDialog

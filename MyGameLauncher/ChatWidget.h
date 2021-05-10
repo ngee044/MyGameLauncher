@@ -63,6 +63,41 @@ private:
 	QLabel* user_id_and_time_ = nullptr;
 };
 
+class FriendContents : public QWidget
+{
+	Q_OBJECT
+public:
+	FriendContents(const QString& name, const QPixmap& profile_pix, bool isMyPlayer) 
+	{
+		QString color = isMyPlayer ? "#5c55ad" : "#3b3299";
+		this->setStyleSheet(QString("QLabel { color: white; background-color:#7671ad; } QWidget { background-color: %1; }").arg(color));
+		this->setMinimumSize(125, 40);
+
+		label_profile_ = new QLabel;
+		label_profile_->setBaseSize(52, 52);
+		label_profile_->setPixmap(profile_pix);
+
+		label_name_ = new QLabel;
+		label_name_->setText(name);
+		
+		QHBoxLayout* layout = new QHBoxLayout;
+
+		layout->addWidget(label_profile_,1);
+		layout->addWidget(label_name_,5);
+
+		this->setLayout(layout);
+	}
+	~FriendContents() 
+	{
+		delete label_profile_;
+		delete label_name_;
+	}
+
+private:
+	QLabel* label_profile_ = nullptr;
+	QLabel* label_name_ = nullptr;
+};
+
 class ChatWidget : public QWidget
 {
 	Q_OBJECT
@@ -71,6 +106,18 @@ public:
 	ChatWidget(QWidget *parent = Q_NULLPTR);
 	~ChatWidget();
 
+	void initLayout();
+	void connections();
+
+	void setFriendWidgetList();
+	void setTextEdit(const QString& txt);
+
+public slots:
+	void slotEnterKey();
+
 private:
 	Ui::ChatWidget ui;
+
+	QVector<FriendContents*> v_friend_widget_;
+	QVector<TextContents*> v_text_contents_;
 };
