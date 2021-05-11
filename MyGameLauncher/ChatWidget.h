@@ -7,6 +7,7 @@
 #include <qdatetime.h>
 #include <QDate>
 #include <QLabel>
+#include "MyGameLauncher.h"
 #include "ui_ChatWidget.h"
 
 class TextContents : public QWidget
@@ -61,21 +62,25 @@ private:
 	QLabel* user_icon_image_ = nullptr;
 	QPixmap icon_image_;
 	QLabel* user_id_and_time_ = nullptr;
+
 };
 
 class FriendContents : public QWidget
 {
 	Q_OBJECT
+
 public:
 	FriendContents(const QString& name, const QPixmap& profile_pix, bool isMyPlayer) 
 	{
+		(void)profile_pix;
+
 		QString color = isMyPlayer ? "#5c55ad" : "#3b3299";
 		this->setStyleSheet(QString("QLabel { color: white; background-color:#7671ad; } QWidget { background-color: %1; }").arg(color));
-		this->setMinimumSize(125, 40);
+		this->setMinimumSize(125, 52);
 
 		label_profile_ = new QLabel;
 		label_profile_->setBaseSize(52, 52);
-		label_profile_->setPixmap(profile_pix);
+		//label_profile_->setPixmap(profile_pix);
 
 		label_name_ = new QLabel;
 		label_name_->setText(name);
@@ -109,7 +114,7 @@ public:
 	void initLayout();
 	void connections();
 
-	void setFriendWidgetList();
+	void setFriendWidgetList(const QString& id, const int& status, bool isMyPlayer = false);
 	void setTextEdit(const QString& txt);
 
 public slots:

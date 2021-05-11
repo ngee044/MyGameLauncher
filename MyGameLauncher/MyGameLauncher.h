@@ -45,7 +45,6 @@ private:
     Ui::MyGameLauncherClass ui;
 
 	TitleBar* titlebar_ = nullptr;
-	User user_info_;
 	
 	GameSelectorButton* mobile_game_bt_ = nullptr;
 	GameSelectorButton* pc_game_bt_ = nullptr;

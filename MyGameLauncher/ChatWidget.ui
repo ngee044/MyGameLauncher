@@ -97,7 +97,25 @@
          <number>0</number>
         </property>
         <item>
-         <widget class="QWidget" name="friend_list_widget_" native="true"/>
+         <widget class="QWidget" name="friend_list_widget_" native="true">
+          <layout class="QVBoxLayout" name="verticalLayout_5">
+           <property name="spacing">
+            <number>6</number>
+           </property>
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+          </layout>
+         </widget>
         </item>
        </layout>
       </widget>

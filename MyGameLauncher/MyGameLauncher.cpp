@@ -8,6 +8,7 @@
 #include "../LoginUserInfo/UserDBManager.h"
 #include "MyGameLauncher.h"
 #include "ChatWidget.h"
+#include "AppManager.h"
 #include <QtNetwork/qnetworkrequest.h>
 
 MyGameLauncher::MyGameLauncher(QWidget* parent)
@@ -96,8 +97,9 @@ void MyGameLauncher::setAccountInfo(const User& userinfo)
 	ui.label_id_->setText(userinfo.Id_);
 	ui.label_vip_->setText(QString::number(userinfo.vip_level_));
 
-	user_info_ = userinfo;
-	auto qstr = user_info_.friend_list_;
+	AppManager::Instance()->setMyUser(userinfo);
+
+	auto qstr = userinfo.friend_list_;
 	QVector<UserFriend> list;
 	list.reserve(qstr.size());
 
@@ -130,6 +132,7 @@ void MyGameLauncher::setFriendList(QVector<UserFriend>  id_list)
 		
 		connect(item, &FriendListWidgetItem::sigClicked, [=]() {
 			ChatWidget* widget = new ChatWidget;
+			widget->setFriendWidgetList(id_list[i].id_, id_list[i].status_);
 			widget->show();
 			});
 		v_friend_list_item_.push_back(item);

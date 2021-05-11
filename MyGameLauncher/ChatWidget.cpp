@@ -1,10 +1,13 @@
 #include <QDebug>
 #include "ChatWidget.h"
+#include "AppManager.h"
+#include "../UIComponent/UIFactory.h"
 
 ChatWidget::ChatWidget(QWidget *parent)
 	: QWidget(parent)
 {
 	ui.setupUi(this);
+	setWindowFlag(Qt::FramelessWindowHint);
 
 	initLayout();
 	connections();
@@ -33,6 +36,9 @@ void ChatWidget::initLayout()
 	ui.pushButton_enter_->setStyleSheet("QPushButton:hover{ color:white; background-color: orange; }"
 		"QPushButton{ color:black; background-color: gray; font-size: 23px; font-weight: bold; }");
 
+	//내 자신의 아이콘 설정
+	auto user = AppManager::Instance()->getMyUser();
+	setFriendWidgetList(user.Id_, user.status_, true);
 }
 
 void ChatWidget::connections()
@@ -46,10 +52,23 @@ void ChatWidget::slotEnterKey()
 	qDebug() << __func__;
 }
 
-void ChatWidget::setFriendWidgetList()
+void ChatWidget::setFriendWidgetList(const QString& id, const int& status, bool isMyPlayer)
 {
+	Q_UNUSED(status);
 	//TODO.....
 	//친구창 리스트 셋
+	FriendContents* contents = new FriendContents(id, QPixmap(), isMyPlayer);
+
+	auto lay = dynamic_cast<QVBoxLayout*>(ui.friend_list_widget_->layout());
+	if (lay == nullptr)
+	{
+		lay = new QVBoxLayout;
+	}
+	lay->setContentsMargins(0, 0, 0, 0);
+	lay->setSpacing(3);
+	lay->setAlignment(Qt::AlignTop);
+	
+	lay->addWidget(contents);
 }
 
 void ChatWidget::setTextEdit(const QString& txt)
