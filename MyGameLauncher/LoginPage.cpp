@@ -9,6 +9,7 @@
 #include "MyGameLauncher.h"
 #include "../UIComponent/UIFactory.h"
 #include "../LoginUserInfo/UserDBManager.h"
+#include "SignUpWidget.h"
 
 LoginPage::LoginPage(QWidget *parent)
 	: QWidget(parent)
@@ -26,7 +27,7 @@ LoginPage::~LoginPage()
 void LoginPage::connection()
 {
 	connect(ui.pushButton_sign_in, &QPushButton::clicked, this, &LoginPage::slotLogin);
-	connect(ui.pushButton_sign_up, &QPushButton::clicked, this, [=]() {qDebug() << "sign up"; });
+	connect(ui.pushButton_sign_up, &QPushButton::clicked, this, &LoginPage::slotSignUp);
 	connect(ui.toolButton_exit, &QToolButton::clicked, this, [=]() { QApplication::exit(); });
 }
 
@@ -38,6 +39,23 @@ void LoginPage::keyPressEvent(QKeyEvent* event)
 		slotLogin();
 	}
 	QWidget::keyPressEvent(event);
+}
+
+void LoginPage::slotSignUp()
+{
+	SignUpWidget* dialog = new SignUpWidget(this);
+	if (dialog->exec())
+	{
+		//todo.....
+		auto user = dialog->getUserInfo();
+		UserDBManager::Instance()->createUserSignUp(user);
+	}
+	else
+	{
+
+	}
+	
+	delete dialog;
 }
 
 void LoginPage::slotLogin()

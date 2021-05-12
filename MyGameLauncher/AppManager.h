@@ -13,6 +13,7 @@ public:
 	void setMyUser(User info) { my_user_ = info; }
 	User getMyUser() { return my_user_; }
 
+	QString getCurrentDate();
 protected:
 
 private:

@@ -30,8 +30,7 @@ int UserDBManager::setUserLogin(const QString id, const QString pw)
 
 void UserDBManager::testFoo()
 {
-	auto i = login_info_->getRowCount(ColumnName::table_name_, ColumnName::user_tag_num_);
-	qDebug() << "num is " << i;
+	auto i = login_info_->getRowCount();
 }
 
 void UserDBManager::createUserSignUp(const User& user_info)

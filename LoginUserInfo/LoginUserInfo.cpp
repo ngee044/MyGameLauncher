@@ -58,20 +58,35 @@ bool LoginUserInfo::checkIdDuplicate(const QString& id)
 	{
 		if (id == query.value(fieldNo1).toString())
 		{
-			return true;
+			return false;
 		}
 	}
-	return false;
+	return true;
 }
 
-int LoginUserInfo::getRowCount(const QString& table_name, const QString& data_column)
+int LoginUserInfo::getRowCount()
 {
-	QSqlQuery query("SELECT COUNT(" + data_column + ") as cnt FROM " + table_name);
-	return query.size();
+	if (!db_.open())
+	{
+		qDebug() << "do not open db" << __func__ << __LINE__;
+		return -1;
+	}
+
+	QSqlQuery query("SELECT * FROM " + ColumnName::table_name_);
+	auto cnt = query.size();
+	db_.close();
+
+	return cnt;
 }
 
 bool LoginUserInfo::createUserSignUp(User user)
 {
+	if (!db_.open())
+	{
+		qDebug() << "do not open db" << __func__ << __LINE__;
+		return false;
+	}
+
 	if (checkIdDuplicate(user.Id_))
 	{
 		QString qstr = ("INSERT INTO %1 (%2, %3, %4, %5, %6, %7, %8, %9, %10)"
@@ -80,10 +95,8 @@ bool LoginUserInfo::createUserSignUp(User user)
 		query.prepare(qstr.arg(ColumnName::user_tag_num_, ColumnName::table_name_, ColumnName::user_id_, ColumnName::user_pw_,
 			ColumnName::vip_level_, ColumnName::create_date_, ColumnName::visit_date_, ColumnName::has_games_,
 			ColumnName::friend_list, ColumnName::status));
-		qDebug() <<"query str = " << query.lastQuery();
-		auto t = getRowCount(ColumnName::table_name_, ColumnName::user_tag_num_);
-		qDebug() << "tag num = " << t;
-		query.bindValue(":tag", t);
+		
+		query.bindValue(":tag", static_cast<int>(getRowCount() + 1));
 		query.bindValue(":id", user.Id_);
 		query.bindValue(":pw", user.pw_);
 		query.bindValue(":vip_level", user.vip_level_);
@@ -93,12 +106,11 @@ bool LoginUserInfo::createUserSignUp(User user)
 		query.bindValue(":friend_list", user.friend_list_);
 		query.bindValue(":status", user.status_);
 
+		db_.close();
 		return true;
 	}
-	else
-	{
-		return false;
-	}
+	db_.close();
+	return false;
 }
 
 void LoginUserInfo::updateUserColumnInfo(const QString& targetID, const QString column)

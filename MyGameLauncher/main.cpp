@@ -7,7 +7,8 @@
 
 #include <QtSql/QtSql>
 #include <QtSql/QSqlDatabase>
-
+#include <QDate>
+#include <QDebug>
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);

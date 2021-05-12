@@ -1,4 +1,5 @@
 #include <QDebug>
+#include <QPushButton>
 #include "LauncherServer.h"
 
 LauncherServer::LauncherServer(QWidget *parent)
