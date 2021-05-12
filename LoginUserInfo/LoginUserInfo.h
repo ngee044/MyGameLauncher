@@ -38,7 +38,9 @@ public:
 	LoginUserInfo();
 
 	int Login(const QString& id, const QString& pw);
-	void createUserSignUp(User user);
+	bool checkIdDuplicate(const QString& id);
+	int getRowCount(const QString& table_name, const QString& data_column);
+	bool createUserSignUp(User user);
 	void updateUserColumnInfo(const QString& targetID, const QString column);
 	QString getUserFriendList(QString tragetID);
 	QString getUserInfo(const QString& targetID, const QString column);

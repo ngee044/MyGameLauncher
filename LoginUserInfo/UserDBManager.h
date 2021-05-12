@@ -15,6 +15,7 @@ public:
 
 	void initDB();
 	int setUserLogin(const QString id, const QString pw);
+	void testFoo();
 	User getUserInfo(const QString& targetID);
 	QString getUserColumnInfo(const QString targetID, const QString column);
 	void createUserSignUp(const User& user_info);

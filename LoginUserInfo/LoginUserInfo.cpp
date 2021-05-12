@@ -48,9 +48,57 @@ int LoginUserInfo::Login(const QString& id, const QString& pw)
 	return -1;
 }
 
-void LoginUserInfo::createUserSignUp(User user)
+//중복 검사
+bool LoginUserInfo::checkIdDuplicate(const QString& id)
 {
+	QSqlQuery query("SELECT * FROM " + ColumnName::table_name_);
+	int fieldNo1 = query.record().indexOf(ColumnName::user_id_);
 
+	while (query.next())
+	{
+		if (id == query.value(fieldNo1).toString())
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+int LoginUserInfo::getRowCount(const QString& table_name, const QString& data_column)
+{
+	QSqlQuery query("SELECT COUNT(" + data_column + ") as cnt FROM " + table_name);
+	return query.size();
+}
+
+bool LoginUserInfo::createUserSignUp(User user)
+{
+	if (checkIdDuplicate(user.Id_))
+	{
+		QString qstr = ("INSERT INTO %1 (%2, %3, %4, %5, %6, %7, %8, %9, %10)"
+			"VALUES (:tag, :id, :pw, :vip_level, :create_date, :visit_date, :has_games, :friend_list, :status)");
+		QSqlQuery query;
+		query.prepare(qstr.arg(ColumnName::user_tag_num_, ColumnName::table_name_, ColumnName::user_id_, ColumnName::user_pw_,
+			ColumnName::vip_level_, ColumnName::create_date_, ColumnName::visit_date_, ColumnName::has_games_,
+			ColumnName::friend_list, ColumnName::status));
+		qDebug() <<"query str = " << query.lastQuery();
+		auto t = getRowCount(ColumnName::table_name_, ColumnName::user_tag_num_);
+		qDebug() << "tag num = " << t;
+		query.bindValue(":tag", t);
+		query.bindValue(":id", user.Id_);
+		query.bindValue(":pw", user.pw_);
+		query.bindValue(":vip_level", user.vip_level_);
+		query.bindValue(":create_date", user.create_date_);
+		query.bindValue(":visit_date", user.visit_date_);
+		query.bindValue(":has_games", user.has_games_);
+		query.bindValue(":friend_list", user.friend_list_);
+		query.bindValue(":status", user.status_);
+
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 void LoginUserInfo::updateUserColumnInfo(const QString& targetID, const QString column)
@@ -82,7 +130,7 @@ QString LoginUserInfo::getUserFriendList(QString targetID)
 QString LoginUserInfo::getUserInfo(const QString& targetID, const QString column)
 {
 	QSqlQuery query("SELECT * FROM " + ColumnName::table_name_);
-	
+
 	//indexOf에 column name을 입력
 	int index = query.record().indexOf(ColumnName::user_id_);
 	int fieldNo = query.record().indexOf(column);
@@ -93,13 +141,15 @@ QString LoginUserInfo::getUserInfo(const QString& targetID, const QString column
 			return query.value(fieldNo).toString();
 		}
 	}
+	qDebug() << "unknown ID";
+	return "unknown ID";
 }
 
 User LoginUserInfo::getUserInfo(const QString& targetID)
 {
 	User user;
 	user.Id_ = targetID;
-	
+
 	QSqlQuery query("SELECT * FROM " + ColumnName::table_name_);
 	int fieldNo1 = query.record().indexOf(ColumnName::user_id_);
 	int fieldNo2 = query.record().indexOf(ColumnName::friend_list);

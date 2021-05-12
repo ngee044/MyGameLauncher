@@ -1,3 +1,4 @@
+#include <QDebug>
 #include "UserDBManager.h"
 
 UserDBManager::UserDBManager()
@@ -25,6 +26,12 @@ int UserDBManager::setUserLogin(const QString id, const QString pw)
 	}
 
 	return login_info_->Login(id, pw);
+}
+
+void UserDBManager::testFoo()
+{
+	auto i = login_info_->getRowCount(ColumnName::table_name_, ColumnName::user_tag_num_);
+	qDebug() << "num is " << i;
 }
 
 void UserDBManager::createUserSignUp(const User& user_info)
