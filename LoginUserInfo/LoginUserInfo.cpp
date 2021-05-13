@@ -2,6 +2,7 @@
 #include <QtCore/QCoreApplication>
 #include <QNetworkAccessManager>
 #include <qsqlquerymodel.h>
+#include <Windows.h>
 #include "LoginUserInfo.h"
 
 LoginUserInfo::LoginUserInfo()
@@ -13,6 +14,7 @@ LoginUserInfo::LoginUserInfo()
 	db_.setDatabaseName("LoginDB");
 	db_.setUserName("admin");
 	db_.setPassword("gkrtjr12");
+	db_.setConnectOptions("MYSQL_OPT_RECONNECT = 1; MYSQL_OPT_CONNECT_TIMEOUT = 600;");
 }
 
 // 0 pw error
@@ -81,6 +83,7 @@ int LoginUserInfo::getRowCount()
 
 bool LoginUserInfo::createUserSignUp(User user)
 {
+	qDebug() << __func__;
 	if (!db_.open())
 	{
 		qDebug() << "do not open db" << __func__ << __LINE__;
@@ -89,26 +92,38 @@ bool LoginUserInfo::createUserSignUp(User user)
 
 	if (checkIdDuplicate(user.Id_))
 	{
-		QString qstr = ("INSERT INTO %1 (%2, %3, %4, %5, %6, %7, %8, %9, %10)"
-			"VALUES (:tag, :id, :pw, :vip_level, :create_date, :visit_date, :has_games, :friend_list, :status)");
-		QSqlQuery query;
-		query.prepare(qstr.arg(ColumnName::user_tag_num_, ColumnName::table_name_, ColumnName::user_id_, ColumnName::user_pw_,
-			ColumnName::vip_level_, ColumnName::create_date_, ColumnName::visit_date_, ColumnName::has_games_,
-			ColumnName::friend_list, ColumnName::status));
-		
-		query.bindValue(":tag", static_cast<int>(getRowCount() + 1));
-		query.bindValue(":id", user.Id_);
-		query.bindValue(":pw", user.pw_);
-		query.bindValue(":vip_level", user.vip_level_);
-		query.bindValue(":create_date", user.create_date_);
-		query.bindValue(":visit_date", user.visit_date_);
-		query.bindValue(":has_games", user.has_games_);
-		query.bindValue(":friend_list", user.friend_list_);
-		query.bindValue(":status", user.status_);
+		QString qstr = ("INSERT INTO LoginUserInfo (USER_TAG_NUMBER, ID, PW, VIP_LEVEL, CREATE_DATE, VISIT_DATE, GAMES, FRIEND, STATUS) "
+			"VALUES (:USER_TAG_NUMBER, :ID, :PW, :VIP_LEVEL, :CREATE_DATE, :VISIT_DATE, :GAMES, :FRIEND, :STATUS)");
 
+		QSqlQuery query;
+		if (query.prepare(qstr))
+		{
+			qDebug() << __LINE__ << "true";
+			query.bindValue(":USER_TAG_NUMBER", static_cast<int>(getRowCount() + 1));
+			query.bindValue(":ID", user.Id_);
+			query.bindValue(":PW", user.pw_);
+			query.bindValue(":VIP_LEVEL", user.vip_level_);
+			query.bindValue(":CREATE_DATE", user.create_date_);
+			query.bindValue(":VISIT_DATE", " ");
+			query.bindValue(":GAMES", " ");
+			query.bindValue(":FRIEND", " ");
+			query.bindValue(":STATUS", user.status_);
+		}
+		
+		if (query.exec())
+		{
+			qDebug() << "true";
+			qDebug() << "create account";
+		}
+		else
+		{
+			qDebug() << "false";
+			qDebug() << "SQL Statement Error : " << query.lastError().text();
+		}
 		db_.close();
 		return true;
 	}
+	qDebug() << "Id duple....";
 	db_.close();
 	return false;
 }
