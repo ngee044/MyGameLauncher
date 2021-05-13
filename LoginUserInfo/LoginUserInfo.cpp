@@ -130,12 +130,81 @@ bool LoginUserInfo::createUserSignUp(User user)
 
 void LoginUserInfo::updateUserColumnInfo(const QString& targetID, const QString column)
 {
-
 }
 
 void LoginUserInfo::updateUserInfo(User userInfo)
 {
+#if 1
+	qDebug() << __func__;
+	if (!db_.open())
+	{
+		qDebug() << "do not open db" << __func__ << __LINE__;
+		return;
+	}
 
+	if (checkIdDuplicate(userInfo.Id_) == false) //계정이 있는지 확인 있으면 false를 리턴
+	{
+		QString games = userInfo.has_games_.join(",");
+		QString frineds = userInfo.friend_list_.join(",");
+	//	QString qstr = QString("UPDATE LoginUserInfo SET (PW = %1, VIP_LEVEL = %2, VISIT_DATE = %3, GAMES = %4, FRIEND = %5, STATUS = %6) "
+	//				           "WHERE (ID = %7)").arg(userInfo.pw_, QString::number(userInfo.vip_level_), userInfo.visit_date_, games, frineds, QString::number(userInfo.status_), userInfo.Id_);
+		//QString qstr = ();
+		//qDebug() << qstr;
+		
+		QSqlQuery query;
+		qDebug() << "update query = " << query.exec("UPDATE LoginUserInfo SET PW = 2222 WHERE ID = nukle");
+		qDebug() << query.lastError().text();
+#if 0
+		if (query.prepare(qstr))
+		{
+			query.bindValue(":USER_TAG_NUMBER", static_cast<int>(getRowCount() + 1));
+			query.bindValue(":ID", userInfo.Id_);
+			query.bindValue(":PW", userInfo.pw_);
+			query.bindValue(":VIP_LEVEL", userInfo.vip_level_);
+			query.bindValue(":CREATE_DATE", userInfo.create_date_);
+			query.bindValue(":VISIT_DATE", " ");
+			query.bindValue(":GAMES", " ");
+			query.bindValue(":FRIEND", " ");
+			query.bindValue(":STATUS", userInfo.status_);
+		}
+
+		if (query.exec())
+		{
+			qDebug() << "true";
+			qDebug() << "create account";
+		}
+		else
+		{
+			qDebug() << "false";
+			qDebug() << "SQL Statement Error : " << query.lastError().text();
+		}
+#endif
+	}
+	db_.close();
+#endif
+
+	/*db_.open();
+	QSqlQuery query("SELECT * FROM " + ColumnName::table_name_);
+	int fieldNo1 = query.record().indexOf(ColumnName::user_id_);
+	int fieldNo2 = query.record().indexOf(ColumnName::friend_list);
+	int fieldNo3 = query.record().indexOf(ColumnName::vip_level_);
+	int fieldNo4 = query.record().indexOf(ColumnName::visit_date_);
+	int fieldNo5 = query.record().indexOf(ColumnName::has_games_);
+	int fieldNo6 = query.record().indexOf(ColumnName::create_date_);
+	int fieldNo7 = query.record().indexOf(ColumnName::status);
+
+	while (query.next())
+	{
+		if (userInfo.Id_ == query.value(fieldNo1).toString())
+		{
+			qDebug() << "1 = " << query.value(fieldNo7).toString();
+			qDebug() << "2 = " << query.value(fieldNo7);
+			query.value(fieldNo7) = QVariant(123);
+			qDebug() << "3 = " << query.value(fieldNo7);
+			break;
+		}
+	}
+	db_.close();*/
 }
 
 QString LoginUserInfo::getUserFriendList(QString targetID)
