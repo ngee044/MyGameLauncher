@@ -43,17 +43,6 @@ void LoginPage::keyPressEvent(QKeyEvent* event)
 
 void LoginPage::slotSignUp()
 {
-	User user;
-	user.Id_ = "nukle";
-	user.pw_ = "1234";
-	user.vip_level_ = 2;
-	user.create_date_ = "2020-04-29";
-	user.visit_date_ = "2020-04-30";
-	user.has_games_ = QString("").split(",");
-	user.friend_list_ = QString("").split(",");
-	user.status_ = 0;
-	UserDBManager::Instance()->updateUserInfo(user);
-	return;
 	SignUpWidget* dialog = new SignUpWidget(this);
 	if (dialog->exec())
 	{

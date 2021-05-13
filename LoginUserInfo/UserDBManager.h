@@ -19,8 +19,7 @@ public:
 	User getUserInfo(const QString& targetID);
 	QString getUserColumnInfo(const QString targetID, const QString column);
 	void createUserSignUp(const User& user_info);
-	void updateUserColumnInfo(const QString& targetID, const QString column);
-	void updateUserInfo(const User& user_info);
+	void updateUserInfo(const QString& target_id, const QString& column_name, const QString& replace_str);
 
 	QStringList getFriendList(QString targetID);
 	int getFriendStatus(QString targetID);

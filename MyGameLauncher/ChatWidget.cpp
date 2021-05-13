@@ -77,3 +77,6 @@ void ChatWidget::setTextEdit(const QString& txt)
 	//텍스트 창에 채팅 기존 내용 채우기
 }
 
+TextContents::~TextContents()
+{
+}

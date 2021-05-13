@@ -35,17 +35,12 @@ void UserDBManager::testFoo()
 
 void UserDBManager::createUserSignUp(const User& user_info)
 {
-	login_info_->createUserSignUp(user_info);
+	login_info_->createUserSignUp(user_info, login_info_->getRowCount());
 }
 
-void UserDBManager::updateUserColumnInfo(const QString& targetID, const QString column)
+void UserDBManager::updateUserInfo(const QString& target_id, const QString& column_name, const QString& replace_str)
 {
-	login_info_->updateUserColumnInfo(targetID, column);
-}
-
-void UserDBManager::updateUserInfo(const User& user_info)
-{
-	login_info_->updateUserInfo(user_info);
+	login_info_->updateUserInfo(target_id, column_name, replace_str);
 }
 
 User UserDBManager::getUserInfo(const QString& targetID)

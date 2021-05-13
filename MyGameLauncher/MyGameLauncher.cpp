@@ -188,7 +188,7 @@ void MyGameLauncher::slotDeleteButton()
 
 void MyGameLauncher::slotSetDirButton()
 {
-	QString path = QFileDialog::getExistingDirectory(this, _kor("설치 폴더 경로를 설정해주세요", "/home/"));
+	QString path = QFileDialog::getExistingDirectory(this, _kor("설치 폴더 경로를 설정해주세요"), "/home/");
 
 	ui.label_path_->setText("PATH : " + path);
 }

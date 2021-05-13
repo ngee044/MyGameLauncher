@@ -5,6 +5,8 @@
 #include <QtSql/QSqlQuery>
 #include "loginuserinfo_global.h"
 
+class QSqlQueryModel;
+
 namespace ColumnName
 {
 	const QString table_name_ = "LoginUserInfo";
@@ -40,14 +42,14 @@ public:
 	int Login(const QString& id, const QString& pw);
 	bool checkIdDuplicate(const QString& id);
 	int getRowCount();
-	bool createUserSignUp(User user);
-	void updateUserColumnInfo(const QString& targetID, const QString column);
+	bool createUserSignUp(User user, const int& tag_num);
+	void updateUserInfo(QString target_id, QString column_name, QString replace_str);
 	QString getUserFriendList(QString tragetID);
 	QString getUserInfo(const QString& targetID, const QString column);
 	User getUserInfo(const QString& targetID);
-	void updateUserInfo(User userInfo);
 
 
 private:
 	QSqlDatabase db_;
+	QSqlQueryModel* query_model_ = nullptr;
 };
