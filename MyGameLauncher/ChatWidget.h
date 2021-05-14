@@ -14,7 +14,6 @@ class TextContents : public QWidget
 {
 	Q_OBJECT
 public:
-	//User Info Class 추가하여 내용 추가해야함
 	TextContents(QString text, bool mine) : text_(text), mine_(mine) { initLayout(); }
 	~TextContents();
 

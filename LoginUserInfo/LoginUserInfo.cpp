@@ -30,8 +30,7 @@ int LoginUserInfo::Login(const QString& id, const QString& pw)
 	QSqlQuery query("SELECT * FROM " + ColumnName::table_name_);
 	int fieldNo1 = query.record().indexOf("ID");
 	int fieldNo2 = query.record().indexOf("PW");
-	static int a = 0;
-	static int b = 0;
+
 	while (query.next())
 	{
 		if (id == query.value(fieldNo1).toString())
@@ -81,9 +80,8 @@ int LoginUserInfo::getRowCount()
 	return cnt;
 }
 
-bool LoginUserInfo::createUserSignUp(User user)
+bool LoginUserInfo::createUserSignUp(User user, const int& tag_num)
 {
-	qDebug() << __func__;
 	if (!db_.open())
 	{
 		qDebug() << "do not open db" << __func__ << __LINE__;
@@ -93,26 +91,25 @@ bool LoginUserInfo::createUserSignUp(User user)
 	if (checkIdDuplicate(user.Id_))
 	{
 		QString qstr = ("INSERT INTO LoginUserInfo (USER_TAG_NUMBER, ID, PW, VIP_LEVEL, CREATE_DATE, VISIT_DATE, GAMES, FRIEND, STATUS) "
-			"VALUES (:USER_TAG_NUMBER, :ID, :PW, :VIP_LEVEL, :CREATE_DATE, :VISIT_DATE, :GAMES, :FRIEND, :STATUS)");
+			"VALUES (:tag, :id, :pw, :vip, :create, :visit, :games, :friend, :status)");
 
 		QSqlQuery query;
 		if (query.prepare(qstr))
 		{
-			qDebug() << __LINE__ << "true";
-			query.bindValue(":USER_TAG_NUMBER", static_cast<int>(getRowCount() + 1));
-			query.bindValue(":ID", user.Id_);
-			query.bindValue(":PW", user.pw_);
-			query.bindValue(":VIP_LEVEL", user.vip_level_);
-			query.bindValue(":CREATE_DATE", user.create_date_);
-			query.bindValue(":VISIT_DATE", " ");
-			query.bindValue(":GAMES", " ");
-			query.bindValue(":FRIEND", " ");
-			query.bindValue(":STATUS", user.status_);
+			//binValue 함수 버그 있음... 유의해서 사용하자
+			query.bindValue(":tag", tag_num); 
+			query.bindValue(":id", user.Id_);
+			query.bindValue(":pw", user.pw_);
+			query.bindValue(":vip", user.vip_level_);
+			query.bindValue(":create", user.create_date_);
+			query.bindValue(":visit", "");
+			query.bindValue(":games", "");
+			query.bindValue(":friend", "");
+			query.bindValue(":status", user.status_);
 		}
-		
+
 		if (query.exec())
 		{
-			qDebug() << "true";
 			qDebug() << "create account";
 		}
 		else
@@ -128,83 +125,34 @@ bool LoginUserInfo::createUserSignUp(User user)
 	return false;
 }
 
-void LoginUserInfo::updateUserColumnInfo(const QString& targetID, const QString column)
+void LoginUserInfo::updateUserInfo(QString target_id, QString column_name, QString replace_str)
 {
-}
-
-void LoginUserInfo::updateUserInfo(User userInfo)
-{
-#if 1
-	qDebug() << __func__;
 	if (!db_.open())
 	{
 		qDebug() << "do not open db" << __func__ << __LINE__;
 		return;
 	}
 
-	if (checkIdDuplicate(userInfo.Id_) == false) //계정이 있는지 확인 있으면 false를 리턴
-	{
-		QString games = userInfo.has_games_.join(",");
-		QString frineds = userInfo.friend_list_.join(",");
-	//	QString qstr = QString("UPDATE LoginUserInfo SET (PW = %1, VIP_LEVEL = %2, VISIT_DATE = %3, GAMES = %4, FRIEND = %5, STATUS = %6) "
-	//				           "WHERE (ID = %7)").arg(userInfo.pw_, QString::number(userInfo.vip_level_), userInfo.visit_date_, games, frineds, QString::number(userInfo.status_), userInfo.Id_);
-		//QString qstr = ();
-		//qDebug() << qstr;
-		
-		QSqlQuery query;
-		qDebug() << "update query = " << query.exec("UPDATE LoginUserInfo SET PW = 2222 WHERE ID = nukle");
-		qDebug() << query.lastError().text();
-#if 0
-		if (query.prepare(qstr))
-		{
-			query.bindValue(":USER_TAG_NUMBER", static_cast<int>(getRowCount() + 1));
-			query.bindValue(":ID", userInfo.Id_);
-			query.bindValue(":PW", userInfo.pw_);
-			query.bindValue(":VIP_LEVEL", userInfo.vip_level_);
-			query.bindValue(":CREATE_DATE", userInfo.create_date_);
-			query.bindValue(":VISIT_DATE", " ");
-			query.bindValue(":GAMES", " ");
-			query.bindValue(":FRIEND", " ");
-			query.bindValue(":STATUS", userInfo.status_);
-		}
-
-		if (query.exec())
-		{
-			qDebug() << "true";
-			qDebug() << "create account";
-		}
-		else
-		{
-			qDebug() << "false";
-			qDebug() << "SQL Statement Error : " << query.lastError().text();
-		}
-#endif
-	}
-	db_.close();
-#endif
-
-	/*db_.open();
 	QSqlQuery query("SELECT * FROM " + ColumnName::table_name_);
 	int fieldNo1 = query.record().indexOf(ColumnName::user_id_);
-	int fieldNo2 = query.record().indexOf(ColumnName::friend_list);
-	int fieldNo3 = query.record().indexOf(ColumnName::vip_level_);
-	int fieldNo4 = query.record().indexOf(ColumnName::visit_date_);
-	int fieldNo5 = query.record().indexOf(ColumnName::has_games_);
-	int fieldNo6 = query.record().indexOf(ColumnName::create_date_);
-	int fieldNo7 = query.record().indexOf(ColumnName::status);
-
 	while (query.next())
 	{
-		if (userInfo.Id_ == query.value(fieldNo1).toString())
+		if (target_id == query.value(fieldNo1).toString())
 		{
-			qDebug() << "1 = " << query.value(fieldNo7).toString();
-			qDebug() << "2 = " << query.value(fieldNo7);
-			query.value(fieldNo7) = QVariant(123);
-			qDebug() << "3 = " << query.value(fieldNo7);
+			bool result = query.exec(QString("UPDATE %1 SET %2 = '%3' WHERE %4 = '%5'").arg(ColumnName::table_name_, column_name, replace_str, ColumnName::user_id_, target_id));
+			if (result)
+			{
+				qDebug() << "Update User Info";
+			}
+			else
+			{
+				qDebug() << query.lastError().text();
+			}
 			break;
 		}
 	}
-	db_.close();*/
+
+	db_.close();
 }
 
 QString LoginUserInfo::getUserFriendList(QString targetID)
