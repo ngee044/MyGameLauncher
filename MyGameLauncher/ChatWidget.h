@@ -17,24 +17,12 @@ public:
 	TextContents(QString text, bool mine) : text_(text), mine_(mine) { initLayout(); }
 	~TextContents();
 
-	void createTextLabel()
-	{
-		if (text_layout_ == nullptr)
-			text_layout_ = new QVBoxLayout();
-
-		auto text_label = new QLabel;
-		text_label->setText(text_);
-		text_label->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-		
-		QFontMetrics fm(this->font());
-		text_label->setBaseSize(QSize(fm.width(text_), text_label->height()));
-		text_layout_->addWidget(text_label, 1);
-	}
 protected:
 	void initLayout()
 	{
 		text_layout_ = new QVBoxLayout();
 		auto main_lay = new QHBoxLayout;
+
 		
 		QString date;
 		date.sprintf("%02d:%02d", QTime::currentTime().hour(), QTime::currentTime().minute());
@@ -45,8 +33,29 @@ protected:
 		user_icon_image_ = new QLabel;
 		//user_icon_image_->setPixmap(user_info_.icon_image_);
 
-		main_lay->addWidget(user_icon_image_, 1);
-		main_lay->addLayout(text_layout_, 1);
+		if (mine_ == true)
+		{
+			main_lay->setAlignment(Qt::AlignRight);
+			main_lay->addWidget(user_icon_image_, 1);
+			main_lay->addLayout(text_layout_, 1);
+			
+		}
+		else
+		{
+			main_lay->setAlignment(Qt::AlignLeft);
+			main_lay->addLayout(text_layout_, 1);
+			main_lay->addWidget(user_icon_image_, 1);
+		}
+		auto text_label = new QLabel;
+		text_label->setText(text_);
+		text_label->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+
+		QFontMetrics fm(this->font());
+		text_label->setBaseSize(QSize(fm.width(text_), text_label->height()));
+		text_layout_->addWidget(text_label, 1);
+
+		this->setLayout(main_lay);
+		this->setStyleSheet("border: 1px solid orange;");
 	}
 	void addTextLabel()
 	{
@@ -124,4 +133,5 @@ private:
 
 	QVector<FriendContents*> v_friend_widget_;
 	QVector<TextContents*> v_text_contents_;
+	QVBoxLayout* chat_contents_ = nullptr;
 };

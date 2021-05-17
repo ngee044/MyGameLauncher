@@ -1,6 +1,7 @@
 #include <QDebug>
 #include "ChatWidget.h"
 #include "AppManager.h"
+#include "../global_common.h"
 #include "../UIComponent/UIFactory.h"
 
 ChatWidget::ChatWidget(QWidget *parent)
@@ -36,9 +37,15 @@ void ChatWidget::initLayout()
 	ui.pushButton_enter_->setStyleSheet("QPushButton:hover{ color:white; background-color: orange; }"
 		"QPushButton{ color:black; background-color: gray; font-size: 23px; font-weight: bold; }");
 
+	chat_contents_ = new QVBoxLayout;
+	chat_contents_->setContentsMargins(12, 9, 12, 9);
+	chat_contents_->setSpacing(6);
+	ui.chat_item_contents_->setLayout(chat_contents_);
+
 	//내 자신의 아이콘 설정
 	auto user = AppManager::Instance()->getMyUser();
 	setFriendWidgetList(user.Id_, user.status_, true);
+	ui.label_chat_title_->setText(_kor("친구 %1님과 채팅").arg(user.Id_));
 }
 
 void ChatWidget::connections()
@@ -50,6 +57,11 @@ void ChatWidget::connections()
 void ChatWidget::slotEnterKey()
 {
 	qDebug() << __func__;
+	auto str = ui.chat_textEdit_->toPlainText();
+	qDebug() << str;
+	ui.chat_textEdit_->clear();
+	TextContents* contents = new TextContents(str, true);
+	chat_contents_->addWidget(contents);
 }
 
 void ChatWidget::setFriendWidgetList(const QString& id, const int& status, bool isMyPlayer)
