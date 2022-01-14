@@ -1,0 +1,6 @@
+QT Dll Lib 로 프로젝트 생성
+Main(Start Project)에서 종속성 추가
+QT Dll Lib 속성 -> General -> .dll로 변경
+QT Dll Lib 속성 -> Advanced -> Target File Extension -> .dll 변경
+
+QT Dll Lib프로젝트에서 속성에서 C/C++ -> Preprocessor -> NAME_LIB 만 남긴다 (STATIC LIB 지운다)
